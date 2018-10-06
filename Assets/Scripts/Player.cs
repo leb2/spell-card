@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
+    ArrayList spells = new ArrayList();
 
     public int hp;
     public float speed;
