@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-
 public class Spell : MonoBehaviour {
     public int damage;
     public ElementType element;
