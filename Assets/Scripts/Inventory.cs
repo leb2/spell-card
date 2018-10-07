@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour {
     public List<Spell> spells = new List<Spell>();
+    public List<Spell> equippedSpells = new List<Spell>();
     public Dictionary<ElementType, int> elementCards = new Dictionary<ElementType, int>();
     public Dictionary<ShapeType, int> shapeCards = new Dictionary<ShapeType, int>();
 

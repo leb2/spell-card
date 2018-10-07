@@ -27,6 +27,7 @@ public class CraftHandler : MonoBehaviour {
     private Button _selected;
     private List<Button> _slots;
     private Player _player;
+    private List<GameObject> inventorySpellCards = new List<GameObject>();
 
     void Start()
     {
@@ -49,6 +50,7 @@ public class CraftHandler : MonoBehaviour {
             shapeCard.cardType = CardType.SHAPE;
             i += 1;
         }
+        RefreshInventorySpells();
     }
 
     private void CraftSelection() {
@@ -64,7 +66,22 @@ public class CraftHandler : MonoBehaviour {
             ShapeType shape = _selectedShape.gameObject.GetComponent<ShapeCard>().shape;
             Spell spell = new Spell(elementTypes, shape);
             inventory.spells.Add(spell);
-            SpellCard spellCard = InitializeButton(1, 1, spellCardPanel, spellCardPrefab) as SpellCard;
+            RefreshInventorySpells();
+        }
+    }
+
+    private void RefreshInventorySpells() {
+        foreach (GameObject button in inventorySpellCards) {
+            Destroy(button);
+        }
+
+        int i = 0;
+        foreach (Spell spell in inventory.spells)
+        {
+            SpellCard spellCard = InitializeButton(i, inventory.spells.Count, spellCardPanel, spellCardPrefab) as SpellCard;
+            spellCard.spell = spell;
+            inventorySpellCards.Add(spellCard.gameObject);
+            i += 1;
         }
     }
 

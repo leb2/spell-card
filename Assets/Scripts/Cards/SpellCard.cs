@@ -3,5 +3,5 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SpellCard : Card {
-
+    public Spell spell;
 }
