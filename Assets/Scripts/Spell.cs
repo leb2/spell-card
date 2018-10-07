@@ -1,20 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 
-
-public class Spell : MonoBehaviour {
+public class Spell {
     public int damage;
     public ElementType element;
     public ShapeType shape;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public Spell(List<ElementType> elements, ShapeType shape) {
+
+    }
 }

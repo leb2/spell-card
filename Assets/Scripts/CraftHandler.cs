@@ -10,10 +10,12 @@ public class CraftHandler : MonoBehaviour {
 
     public GameObject elementCardPrefab;
     public GameObject shapeCardPrefab;
+    public GameObject spellCardPrefab;
 
     public GameObject elementCardPanel;
     public GameObject shapeCardPanel;
     public GameObject modifierCardPanel;
+    public GameObject spellCardPanel;
 
     public Button craftButton;
     public Button elementSlot;
@@ -28,16 +30,12 @@ public class CraftHandler : MonoBehaviour {
 
     void Start()
     {
-
-        Debug.Log("ASDF");
         craftButton.onClick.AddListener(CraftSelection);
-        elementSlot.onClick.AddListener(CraftSelection);
 
         // Spawn each element card centered 
         int i = 0;
         foreach (KeyValuePair<ElementType, int> entry in inventory.elementCards) {
             ElementCard elementCard = InitializeButton(i, inventory.elementCards.Count, elementCardPanel, elementCardPrefab) as ElementCard;
-            Debug.Log(elementCard);
             elementCard.elementType = entry.Key;
             elementCard.cardType = CardType.ELEMENT;
             i += 1;
@@ -54,9 +52,19 @@ public class CraftHandler : MonoBehaviour {
     }
 
     private void CraftSelection() {
-        Debug.Log("TESTING");
-        if (_selectedElements.Count != 0 && _selectedShape != null) {
-
+        Debug.Log("Trying to craft");
+        if (_selectedElements.Count != 0 && _selectedShape != null)
+        {
+            Debug.Log("Conditions satisfied");
+            List<ElementType> elementTypes = new List<ElementType>();
+            foreach (Button button in _selectedElements)
+            {
+                elementTypes.Add(button.gameObject.GetComponent<ElementCard>().elementType);
+            }
+            ShapeType shape = _selectedShape.gameObject.GetComponent<ShapeCard>().shape;
+            Spell spell = new Spell(elementTypes, shape);
+            inventory.spells.Add(spell);
+            SpellCard spellCard = InitializeButton(1, 1, spellCardPanel, spellCardPrefab) as SpellCard;
         }
     }
 
@@ -82,16 +90,21 @@ public class CraftHandler : MonoBehaviour {
     private void elementClicked(Button button) {
         Card card = button.gameObject.GetComponents<Card>()[0];
         if (card.cardType == CardType.ELEMENT) {
-            Debug.Log("I am an element");
+            if (_selectedElements.Contains(button))
+            {
+                _selectedElements.Remove(button);
+            }
+            else
+            {
+                _selectedElements.Add(button);
+            }
         }
         if (card.cardType == CardType.SHAPE) {
-            Debug.Log("I am a shape");
-        }
-
-        if (_selectedElements.Contains(button)) {
-            _selectedElements.Remove(button);
-        } else {
-            _selectedElements.Add(button);
+            if (_selectedShape == button) {
+                _selectedShape = null;
+            } else {
+                _selectedShape = button;
+            }
         }
     }
 

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour {
-    public List<Spell> spells;
+    public List<Spell> spells = new List<Spell>();
     public Dictionary<ElementType, int> elementCards = new Dictionary<ElementType, int>();
     public Dictionary<ShapeType, int> shapeCards = new Dictionary<ShapeType, int>();
 

@@ -2,6 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Card : MonoBehaviour {
-    public CardType cardType;
+public class SpellCard : Card {
+
 }
