@@ -9,6 +9,8 @@ public class CraftHandler : MonoBehaviour {
     public Inventory inventory;
 
     public GameObject elementCardPrefab;
+    public GameObject shapeCardPrefab;
+
     public GameObject elementCardPanel;
     public GameObject shapeCardPanel;
     public GameObject modifierCardPanel;
@@ -34,18 +36,19 @@ public class CraftHandler : MonoBehaviour {
         // Spawn each element card centered 
         int i = 0;
         foreach (KeyValuePair<ElementType, int> entry in inventory.elementCards) {
-            ElementUI element = InitializeButton(i, inventory.elementCards.Count, elementCardPanel);
-            element.element = entry.Key;
-            element.cardType = CardType.ELEMENT;
+            ElementCard elementCard = InitializeButton(i, inventory.elementCards.Count, elementCardPanel, elementCardPrefab) as ElementCard;
+            Debug.Log(elementCard);
+            elementCard.elementType = entry.Key;
+            elementCard.cardType = CardType.ELEMENT;
             i += 1;
         }
         // Spawn each shape card centered
         i = 0;
         foreach (KeyValuePair<ShapeType, int> entry in inventory.shapeCards)
         {
-            ElementUI element = InitializeButton(i, inventory.shapeCards.Count, shapeCardPanel);
-            element.shape = entry.Key;
-            element.cardType = CardType.SHAPE;
+            ShapeCard shapeCard = InitializeButton(i, inventory.shapeCards.Count, shapeCardPanel, shapeCardPrefab) as ShapeCard;
+            shapeCard.shape = entry.Key;
+            shapeCard.cardType = CardType.SHAPE;
             i += 1;
         }
     }
@@ -57,8 +60,8 @@ public class CraftHandler : MonoBehaviour {
         }
     }
 
-    private ElementUI InitializeButton(int i, int numCards, GameObject panel) {
-        GameObject newButton = Instantiate(elementCardPrefab) as GameObject;
+    private Card InitializeButton(int i, int numCards, GameObject panel, GameObject prefab) {
+        GameObject newButton = Instantiate(prefab) as GameObject;
         newButton.transform.SetParent(panel.transform, false);
         newButton.GetComponent<RectTransform>().localPosition = GetCenteredPosition(i, numCards);
 
@@ -66,7 +69,7 @@ public class CraftHandler : MonoBehaviour {
         Button buttonComponent = newButton.GetComponent<Button>();
         buttonComponent.onClick.AddListener(() => elementClicked(buttonComponent));
 
-        return newButton.GetComponent<ElementUI>();
+        return newButton.GetComponents<Card>()[0];
     }
 
     private Vector3 GetCenteredPosition(int i, int numCards) {
@@ -77,7 +80,14 @@ public class CraftHandler : MonoBehaviour {
     }
 
     private void elementClicked(Button button) {
-        Debug.Log("Element clicked");
+        Card card = button.gameObject.GetComponents<Card>()[0];
+        if (card.cardType == CardType.ELEMENT) {
+            Debug.Log("I am an element");
+        }
+        if (card.cardType == CardType.SHAPE) {
+            Debug.Log("I am a shape");
+        }
+
         if (_selectedElements.Contains(button)) {
             _selectedElements.Remove(button);
         } else {
