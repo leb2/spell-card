@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ProjectileSpell : MonoBehaviour {
     public string targetTag = "Enemy";
-    public double damage;
+    public float damage;
 
 	// Use this for initialization
 	void Start () {

@@ -12,9 +12,15 @@ public class Player : Entity {
 
     private Rigidbody2D rb2d;
 
+    public new bool TakeDamage(float damage) {
+        bool died = base.TakeDamage(damage);
+        // TODO: Handle player death here
+        return died;
+    }
 
     // Use this for initialization
-    void Start () {
+    public new void Start () {
+        base.Start();
         rb2d = GetComponent<Rigidbody2D>();
         inventory = new Inventory();
     }
@@ -44,14 +50,4 @@ public class Player : Entity {
         projectileObj.GetComponent<Rigidbody2D>().velocity = direction * 50;
         projectileObj.GetComponent<ProjectileSpell>().damage = spell.damage;
     }
-
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.tag == "Enemy")
-        {
-            Destroy(other.gameObject);
-            Debug.Log("success");
-        }
-    }
-
 }

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Entity : MonoBehaviour {
-    public double maxHp;
-    public double hp;
+    public float maxHp;
+    public float hp;
 
-    public bool TakeDamage(double damage) {
+    public bool TakeDamage(float damage) {
         hp -= damage;
         if (hp < 0) {
             Destroy(this.gameObject);
@@ -16,8 +16,8 @@ public class Entity : MonoBehaviour {
     }
 
 	// Use this for initialization
-	void Start () {
-		
+    public void Start () {
+        hp = maxHp;
 	}
 	
 	// Update is called once per frame

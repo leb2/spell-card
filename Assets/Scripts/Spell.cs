@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 
 public class Spell {
-    public double damage;
+    public float damage;
 
     public ElementType elementType;
     public ShapeType shape;
@@ -13,7 +13,7 @@ public class Spell {
         this.shape = shape;
         this.modifier = modifier;
 
-        Dictionary<ElementType, double> damages = new Dictionary<ElementType, double>
+        Dictionary<ElementType, float> damages = new Dictionary<ElementType, float>
         {
             {ElementType.FIRE, 10},
             {ElementType.ICE, 5},
