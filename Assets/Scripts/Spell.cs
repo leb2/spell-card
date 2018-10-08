@@ -1,21 +1,25 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 
+public class Spell {
+    public double damage;
 
-
-public class Spell : MonoBehaviour {
-    public int damage;
-    public ElementType element;
+    public ElementType elementType;
     public ShapeType shape;
+    public Modifier modifier;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+    public Spell(List<ElementType> elementTypes, ShapeType shape, Modifier modifier) {
+        this.elementType = elementTypes[0];
+        this.shape = shape;
+        this.modifier = modifier;
+
+        Dictionary<ElementType, double> damages = new Dictionary<ElementType, double>
+        {
+            {ElementType.FIRE, 10},
+            {ElementType.ICE, 5},
+            {ElementType.ROT, 5}
+        };
+
+        this.damage = damages[this.elementType];
+    }
 }
