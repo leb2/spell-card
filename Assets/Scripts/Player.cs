@@ -27,6 +27,7 @@ public class Player : MonoBehaviour {
     {
         if (other.gameObject.tag == "Enemy")
         {
+            Destroy(other.gameObject);
             Debug.Log("success");
         }
     }

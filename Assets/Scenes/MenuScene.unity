@@ -189,7 +189,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1553367133}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.9496629
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -354,7 +354,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3b20b63c0b5e47efab026c8bd93c493, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  modifierCards: []
 --- !u!212 &180003258
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -730,7 +729,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.25333333}
-  m_AnchoredPosition: {x: 0, y: 1.3600006}
+  m_AnchoredPosition: {x: 0, y: 1.3599854}
   m_SizeDelta: {x: 0, y: 2.7000122}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &664476731
@@ -878,7 +877,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.0008544922, y: -0.0000038146973}
+  m_AnchoredPosition: {x: 0.0008544922, y: 0}
   m_SizeDelta: {x: 0.14001465, y: 0.69999695}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &886219851
@@ -1088,7 +1087,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.0000025174672}
+  m_AnchoredPosition: {x: -0.19428687, y: 0.0039929952}
   m_SizeDelta: {x: 259.8, y: 98.35}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1011675971
@@ -1185,6 +1184,7 @@ MonoBehaviour:
   shapeCardPanel: {fileID: 1020295281}
   modifierCardPanel: {fileID: 1589592949}
   spellCardPanel: {fileID: 664476729}
+  equippedSpellsPanel: {fileID: 2010841013}
   craftButton: {fileID: 1839280848}
   elementSlot: {fileID: 1210197511}
   shapeSlot: {fileID: 1331259592}
@@ -2319,7 +2319,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 340177310}
   m_HandleRect: {fileID: 340177309}
   m_Direction: 0
-  m_Value: 0
+  m_Value: 0.00074790395
   m_Size: 0.5251182
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -2372,7 +2372,7 @@ GameObject:
   - component: {fileID: 2010841016}
   - component: {fileID: 2010841015}
   m_Layer: 5
-  m_Name: CurrSpells
+  m_Name: EquippedPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour {
-    public List<Spell> spells = new List<Spell>();
+    public List<Spell> spells = new List<Spell>(); // List of all unequipped spells
     public List<Spell> equippedSpells = new List<Spell>();
     public List<Modifier> modifiers = new List<Modifier>();
 
