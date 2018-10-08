@@ -17,18 +17,22 @@ public class CraftHandler : MonoBehaviour {
     public GameObject shapeCardPanel;
     public GameObject modifierCardPanel;
     public GameObject spellCardPanel;
+    public GameObject equippedSpellsPanel;
 
     public Button craftButton;
     public Button elementSlot;
     public Button shapeSlot;
     public Button modifierSlot;
 
+
     private List<Button> _selectedElements = new List<Button>();
     private Button _selectedShape = null;
+    private Button _selectedModifier = null;
     private Button _selected;
     private List<Button> _slots;
     private Player _player;
     private List<GameObject> inventorySpellCards = new List<GameObject>();
+    private List<Button> _equippedSpells = new List<Button>();
 
     void Start()
     {
@@ -40,7 +44,6 @@ public class CraftHandler : MonoBehaviour {
             ElementCard elementCard = InitializeButton(i, inventory.elementCards.Count,
                 elementCardPanel, elementCardPrefab) as ElementCard;
             elementCard.elementType = entry.Key;
-            elementCard.cardType = CardType.ELEMENT;
             i += 1;
         }
         // Spawn each shape card centered
@@ -50,34 +53,41 @@ public class CraftHandler : MonoBehaviour {
             ShapeCard shapeCard = InitializeButton(i, inventory.shapeCards.Count,
                 shapeCardPanel, shapeCardPrefab) as ShapeCard;
             shapeCard.shape = entry.Key;
-            shapeCard.cardType = CardType.SHAPE;
             i += 1;
         }
 
         // Spawn each modifier card centered
         i = 0;
-        foreach(ModifierCard card in inventory.modifierCards) {
-            ModifierCard modifierCard = InitializeButton(i, inventory.modifierCards.Count,
+        foreach(Modifier modifier in inventory.modifiers) {
+            ModifierCard modifierCard = InitializeButton(i, inventory.modifiers.Count,
                 modifierCardPanel, modifierCardPrefab) as ModifierCard;
+            modifierCard.modifier = modifier;
             i += 1;
         }
         RefreshInventorySpells();
     }
 
+    private void ClearSelection() {
+        _selectedElements.Clear();
+        _selectedModifier = null;
+        _selectedShape = null;
+        UpdateColors();
+    }
+
     private void CraftSelection() {
-        Debug.Log("Trying to craft");
         if (_selectedElements.Count != 0 && _selectedShape != null)
         {
-            Debug.Log("Conditions satisfied");
             List<ElementType> elementTypes = new List<ElementType>();
             foreach (Button button in _selectedElements)
             {
                 elementTypes.Add(button.gameObject.GetComponent<ElementCard>().elementType);
             }
             ShapeType shape = _selectedShape.gameObject.GetComponent<ShapeCard>().shape;
-            Spell spell = new Spell(elementTypes, shape);
+            Modifier modifier = _selectedModifier.gameObject.GetComponent<ModifierCard>().modifier;
+            Spell spell = new Spell(elementTypes, shape, modifier);
             inventory.spells.Add(spell);
             RefreshInventorySpells();
+            ClearSelection();
         }
     }
 
@@ -91,6 +101,14 @@ public class CraftHandler : MonoBehaviour {
         {
             SpellCard spellCard = InitializeButton(i, inventory.spells.Count,
                 spellCardPanel, spellCardPrefab) as SpellCard;
+            spellCard.spell = spell;
+            inventorySpellCards.Add(spellCard.gameObject);
+            i += 1;
+        }
+        i = 0;
+        foreach (Spell spell in inventory.equippedSpells) {
+            SpellCard spellCard = InitializeButton(i, inventory.equippedSpells.Count,
+                equippedSpellsPanel, spellCardPrefab) as SpellCard;
             spellCard.spell = spell;
             inventorySpellCards.Add(spellCard.gameObject);
             i += 1;
@@ -118,23 +136,59 @@ public class CraftHandler : MonoBehaviour {
 
     private void elementClicked(Button button) {
         Card card = button.gameObject.GetComponents<Card>()[0];
+
         if (card.cardType == CardType.ELEMENT) {
             if (_selectedElements.Contains(button))
             {
                 _selectedElements.Remove(button);
+                if (_selectedElements.Count == 0) {
+                    elementSlot.GetComponent<Image>().color = Color.white;
+                }
             }
             else
             {
                 _selectedElements.Add(button);
+                elementSlot.GetComponent<Image>().color = Color.green;
+
             }
         }
         if (card.cardType == CardType.SHAPE) {
             if (_selectedShape == button) {
                 _selectedShape = null;
-            } else {
+            }
+            else {
                 _selectedShape = button;
             }
         }
+        if (card.cardType == CardType.MODIFIER) {
+            if (_selectedModifier == button)
+            {
+                _selectedModifier = null;
+            }
+            else
+            {
+                _selectedModifier = button;
+            }
+        }
+        if (card.cardType == CardType.SPELL) {
+            Spell spell = ((SpellCard)card).spell;
+            if (inventory.equippedSpells.Contains(spell)) {
+                inventory.equippedSpells.Remove(spell);
+                inventory.spells.Add(spell);
+            } else if (inventory.equippedSpells.Count < 2) {
+                inventory.equippedSpells.Add(spell);
+                inventory.spells.Remove(spell);
+            }
+            RefreshInventorySpells();
+        }
+        UpdateColors();
+    }
+
+    private void UpdateColors() {
+        elementSlot.GetComponent<Image>().color = _selectedElements.Count == 0 ? Color.white :
+            Color.green;
+        shapeSlot.GetComponent<Image>().color = _selectedShape == null ? Color.white : Color.green;
+        modifierSlot.GetComponent<Image>().color = _selectedModifier == null ? Color.white : Color.green;
     }
 
     private void slotClicked(Button button) {

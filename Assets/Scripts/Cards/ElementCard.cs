@@ -8,6 +8,8 @@ public class ElementCard : Card {
 
 	// Use this for initialization
 	void Start () {
+        cardType = CardType.ELEMENT;
+
         Dictionary<ElementType, Color> elementColors = new Dictionary<ElementType, Color>
         {
             {ElementType.FIRE, Color.red},

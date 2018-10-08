@@ -6,7 +6,7 @@ using UnityEngine;
 public class Inventory : MonoBehaviour {
     public List<Spell> spells = new List<Spell>();
     public List<Spell> equippedSpells = new List<Spell>();
-    public List<ModifierCard> modifierCards = new List<ModifierCard>();
+    public List<Modifier> modifiers = new List<Modifier>();
 
     public Dictionary<ElementType, int> elementCards = new Dictionary<ElementType, int>();
     public Dictionary<ShapeType, int> shapeCards = new Dictionary<ShapeType, int>();
@@ -20,8 +20,6 @@ public class Inventory : MonoBehaviour {
         foreach (ShapeType shape in Enum.GetValues(typeof(ShapeType))) {
             shapeCards[shape] = 5;
         }
-        modifierCards.Add(new ModifierCard());
-        modifierCards.Add(new ModifierCard());
-        modifierCards.Add(new ModifierCard());
+        modifiers.Add(new Modifier());
     }
 }

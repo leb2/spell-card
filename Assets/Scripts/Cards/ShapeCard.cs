@@ -10,6 +10,7 @@ public class ShapeCard : Card {
 
 	// Use this for initialization
 	void Start () {
+        cardType = CardType.SHAPE;
 
         Dictionary<ShapeType, Color> shapeColors = new Dictionary<ShapeType, Color>
         {
