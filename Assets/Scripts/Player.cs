@@ -19,15 +19,15 @@ public class Player : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        //Store the current horizontal input in the float moveHorizontal.
-        float moveHorizontal = Input.GetAxis("Horizontal");
+        rb2d.velocity = (new Vector2(Input.GetAxisRaw("Horizontal"),
+            Input.GetAxisRaw("Vertical"))).normalized * speed * Time.deltaTime;
+    }
 
-        //Store the current vertical input in the float moveVertical.
-        float moveVertical = Input.GetAxis("Vertical");
-
-        //Use the two store floats to create a new Vector2 variable movement.
-        Vector2 movement = new Vector2(moveHorizontal, moveVertical);
-
-        rb2d.MovePosition(movement);
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Enemy")
+        {
+            Debug.Log("success");
+        }
     }
 }
