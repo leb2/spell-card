@@ -354,6 +354,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3b20b63c0b5e47efab026c8bd93c493, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  modifierCards: []
 --- !u!212 &180003258
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1087,7 +1088,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 199.6}
+  m_AnchoredPosition: {x: 0, y: 199.59996}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1011675971
@@ -1177,6 +1178,8 @@ MonoBehaviour:
   shapeCardPrefab: {fileID: 1815527825278518, guid: a7a0599ea543247f59e0aa4c3d6a22ab,
     type: 2}
   spellCardPrefab: {fileID: 1663324801283778, guid: 803dd80916efe41b6b957a39581e8d80,
+    type: 2}
+  modifierCardPrefab: {fileID: 1227054085639980, guid: 9f82a0209345a41d98eb70910bfeb227,
     type: 2}
   elementCardPanel: {fileID: 1216113431}
   shapeCardPanel: {fileID: 1020295281}

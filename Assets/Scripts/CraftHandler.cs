@@ -11,6 +11,7 @@ public class CraftHandler : MonoBehaviour {
     public GameObject elementCardPrefab;
     public GameObject shapeCardPrefab;
     public GameObject spellCardPrefab;
+    public GameObject modifierCardPrefab;
 
     public GameObject elementCardPanel;
     public GameObject shapeCardPanel;
@@ -36,7 +37,8 @@ public class CraftHandler : MonoBehaviour {
         // Spawn each element card centered 
         int i = 0;
         foreach (KeyValuePair<ElementType, int> entry in inventory.elementCards) {
-            ElementCard elementCard = InitializeButton(i, inventory.elementCards.Count, elementCardPanel, elementCardPrefab) as ElementCard;
+            ElementCard elementCard = InitializeButton(i, inventory.elementCards.Count,
+                elementCardPanel, elementCardPrefab) as ElementCard;
             elementCard.elementType = entry.Key;
             elementCard.cardType = CardType.ELEMENT;
             i += 1;
@@ -45,9 +47,18 @@ public class CraftHandler : MonoBehaviour {
         i = 0;
         foreach (KeyValuePair<ShapeType, int> entry in inventory.shapeCards)
         {
-            ShapeCard shapeCard = InitializeButton(i, inventory.shapeCards.Count, shapeCardPanel, shapeCardPrefab) as ShapeCard;
+            ShapeCard shapeCard = InitializeButton(i, inventory.shapeCards.Count,
+                shapeCardPanel, shapeCardPrefab) as ShapeCard;
             shapeCard.shape = entry.Key;
             shapeCard.cardType = CardType.SHAPE;
+            i += 1;
+        }
+
+        // Spawn each modifier card centered
+        i = 0;
+        foreach(ModifierCard card in inventory.modifierCards) {
+            ModifierCard modifierCard = InitializeButton(i, inventory.modifierCards.Count,
+                modifierCardPanel, modifierCardPrefab) as ModifierCard;
             i += 1;
         }
         RefreshInventorySpells();
@@ -78,7 +89,8 @@ public class CraftHandler : MonoBehaviour {
         int i = 0;
         foreach (Spell spell in inventory.spells)
         {
-            SpellCard spellCard = InitializeButton(i, inventory.spells.Count, spellCardPanel, spellCardPrefab) as SpellCard;
+            SpellCard spellCard = InitializeButton(i, inventory.spells.Count,
+                spellCardPanel, spellCardPrefab) as SpellCard;
             spellCard.spell = spell;
             inventorySpellCards.Add(spellCard.gameObject);
             i += 1;
