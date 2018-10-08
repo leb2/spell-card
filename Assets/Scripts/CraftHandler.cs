@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class CraftHandler : MonoBehaviour {
 
@@ -18,6 +20,7 @@ public class CraftHandler : MonoBehaviour {
     public GameObject equippedSpellsPanel;
 
     public Button craftButton;
+    public Button finishButton;
     public Button elementSlot;
     public Button shapeSlot;
     public Button modifierSlot;
@@ -35,6 +38,7 @@ public class CraftHandler : MonoBehaviour {
     void Start()
     {
         craftButton.onClick.AddListener(CraftSelection);
+        finishButton.onClick.AddListener(FinishCrafting);
         inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().inventory;
         Debug.Log(inventory);
 
@@ -189,6 +193,12 @@ public class CraftHandler : MonoBehaviour {
             Color.green;
         shapeSlot.GetComponent<Image>().color = _selectedShape == null ? Color.white : Color.green;
         modifierSlot.GetComponent<Image>().color = _selectedModifier == null ? Color.white : Color.green;
+    }
+
+    private void FinishCrafting() {
+        SceneManager.UnloadSceneAsync("MenuScene");
+        GameController gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+        gameController.StartNextRound();
     }
 
     private void slotClicked(Button button) {

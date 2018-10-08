@@ -3,9 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 public class GameController : MonoBehaviour {
     public bool roundOver = false;
+    public GameObject zombie;
+
+    private int _currRound = 0;
 
     [Serializable]
     public struct RoundInfo
@@ -18,14 +22,26 @@ public class GameController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        
+        StartNextRound();
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+
+    public void StartNextRound() {
+        RoundInfo info = rounds[_currRound];
+        for (int i = 0; i < info.numZombies; i++) {
+            Vector3 position = Random.insideUnitCircle.normalized;
+            position *= Random.Range(7, 10);
+            Instantiate(zombie, position, Quaternion.identity);
+        }
+        roundOver = false;
+    }
+
+    // Update is called once per frame
+    void Update () {
         List<GameObject> enemies = new List<GameObject>(GameObject.FindGameObjectsWithTag("Enemy"));
         if (enemies.Count == 0 && !roundOver) {
             roundOver = true;
+            _currRound = _currRound == rounds.Count - 1 ? rounds.Count - 1 : _currRound + 1;
             SceneManager.LoadScene("MenuScene", LoadSceneMode.Additive);
         }
 	}
