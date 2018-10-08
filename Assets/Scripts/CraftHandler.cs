@@ -6,8 +6,6 @@ using UnityEngine.UI;
 
 public class CraftHandler : MonoBehaviour {
 
-    public Inventory inventory;
-
     public GameObject elementCardPrefab;
     public GameObject shapeCardPrefab;
     public GameObject spellCardPrefab;
@@ -24,7 +22,7 @@ public class CraftHandler : MonoBehaviour {
     public Button shapeSlot;
     public Button modifierSlot;
 
-
+    private Inventory inventory;
     private List<Button> _selectedElements = new List<Button>();
     private Button _selectedShape = null;
     private Button _selectedModifier = null;
@@ -37,6 +35,8 @@ public class CraftHandler : MonoBehaviour {
     void Start()
     {
         craftButton.onClick.AddListener(CraftSelection);
+        inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().inventory;
+        Debug.Log(inventory);
 
         // Spawn each element card centered 
         int i = 0;

@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
-public class Inventory : MonoBehaviour {
+public class Inventory {
     public List<Spell> spells = new List<Spell>(); // List of all unequipped spells
     public List<Spell> equippedSpells = new List<Spell>();
     public List<Modifier> modifiers = new List<Modifier>();
@@ -11,7 +10,7 @@ public class Inventory : MonoBehaviour {
     public Dictionary<ElementType, int> elementCards = new Dictionary<ElementType, int>();
     public Dictionary<ShapeType, int> shapeCards = new Dictionary<ShapeType, int>();
 
-    void Start()
+    public Inventory()
     {
         // Initialize inventory counts to 0
         foreach (ElementType element in Enum.GetValues(typeof(ElementType))) {
