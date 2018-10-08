@@ -61,7 +61,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &61731528445826070
 BoxCollider2D:
@@ -72,7 +72,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -99,6 +99,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0454461e86d84a5f8fc2c623b4b3e38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetTag: Enemy
+  damage: 0
 --- !u!212 &212879889281042596
 SpriteRenderer:
   m_ObjectHideFlags: 1

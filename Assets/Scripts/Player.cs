@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour {
+public class Player : Entity {
 
     public Inventory inventory;
-
-    public int hp;
     public float speed;
 
     public GameObject projectile;
+    public GameObject gameController;
 
     private Rigidbody2D rb2d;
 
@@ -22,6 +21,10 @@ public class Player : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (gameController.GetComponent<GameController>().roundOver) {
+            return;
+        }
+
         rb2d.velocity = (new Vector2(Input.GetAxisRaw("Horizontal"),
             Input.GetAxisRaw("Vertical"))).normalized * speed * Time.deltaTime;
 
@@ -37,8 +40,9 @@ public class Player : MonoBehaviour {
     private void UseSpell(int spellIndex, Vector3 worldPoint) {
         Spell spell = inventory.equippedSpells[spellIndex];
         Vector3 direction = (worldPoint - transform.position).normalized;
-        GameObject projectileObj = Instantiate(projectile, transform.position + direction * 1.2F, Quaternion.identity);
-        projectileObj.GetComponent<Rigidbody2D>().velocity = direction * 10;
+        GameObject projectileObj = Instantiate(projectile, transform.position + direction * 1.5F, Quaternion.identity);
+        projectileObj.GetComponent<Rigidbody2D>().velocity = direction * 50;
+        projectileObj.GetComponent<ProjectileSpell>().damage = spell.damage;
     }
 
     private void OnCollisionEnter2D(Collision2D other)

@@ -11,6 +11,7 @@ public class GameController : MonoBehaviour {
 
     private int _currRound = 0;
 
+
     [Serializable]
     public struct RoundInfo
     {
@@ -33,6 +34,7 @@ public class GameController : MonoBehaviour {
             position *= Random.Range(7, 10);
             Instantiate(zombie, position, Quaternion.identity);
         }
+        GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>().position = Vector3.zero;
         roundOver = false;
     }
 

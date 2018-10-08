@@ -102,6 +102,7 @@ MonoBehaviour:
   hp: 10
   speed: 300
   projectile: {fileID: 1078129184796930, guid: 1aad0875d264745a1851ecb97e832a1a, type: 2}
+  gameController: {fileID: 0}
 --- !u!212 &212821106960241022
 SpriteRenderer:
   m_ObjectHideFlags: 1
