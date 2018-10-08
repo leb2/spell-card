@@ -20,5 +20,7 @@ public class Inventory {
             shapeCards[shape] = 5;
         }
         modifiers.Add(new Modifier());
+        equippedSpells.Add(new Spell(new List<ElementType> { ElementType.FIRE }, ShapeType.PROJECTILE, null));
+
     }
 }

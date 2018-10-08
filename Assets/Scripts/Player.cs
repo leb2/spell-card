@@ -9,6 +9,8 @@ public class Player : MonoBehaviour {
     public int hp;
     public float speed;
 
+    public GameObject projectile;
+
     private Rigidbody2D rb2d;
 
 
@@ -22,6 +24,21 @@ public class Player : MonoBehaviour {
 	void Update () {
         rb2d.velocity = (new Vector2(Input.GetAxisRaw("Horizontal"),
             Input.GetAxisRaw("Vertical"))).normalized * speed * Time.deltaTime;
+
+        // Cast Spells
+        if (Input.GetKeyDown(KeyCode.Mouse0)) {
+            UseSpell(0, Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        }
+        if (Input.GetKeyDown(KeyCode.Mouse1)) {
+            UseSpell(1, Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        }
+    }
+
+    private void UseSpell(int spellIndex, Vector3 worldPoint) {
+        Spell spell = inventory.equippedSpells[spellIndex];
+        Vector3 direction = (worldPoint - transform.position).normalized;
+        GameObject projectileObj = Instantiate(projectile, transform.position + direction * 1.2F, Quaternion.identity);
+        projectileObj.GetComponent<Rigidbody2D>().velocity = direction * 10;
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -32,4 +49,5 @@ public class Player : MonoBehaviour {
             Debug.Log("success");
         }
     }
+
 }
