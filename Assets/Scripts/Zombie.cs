@@ -5,7 +5,7 @@ using UnityEngine;
 public class Zombie : Entity {
 
     public float speed;
-    public float damage  = 10;
+    public float damage = 10;
 
     private Rigidbody2D rb2d;
     private GameObject player;

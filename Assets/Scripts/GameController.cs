@@ -6,8 +6,12 @@ using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 public class GameController : MonoBehaviour {
+
+    [HideInInspector]
     public bool roundOver = false;
+
     public GameObject zombie;
+    public GameObject archer;
 
     private int _currRound = 0;
 
@@ -29,10 +33,20 @@ public class GameController : MonoBehaviour {
 
     public void StartNextRound() {
         RoundInfo info = rounds[_currRound];
+
+        // Spawn zombies
         for (int i = 0; i < info.numZombies; i++) {
             Vector3 position = Random.insideUnitCircle.normalized;
             position *= Random.Range(7, 10);
             Instantiate(zombie, position, Quaternion.identity);
+        }
+
+        // Spawn archers
+        for (int i = 0; i < info.numArchers; i++)
+        {
+            Vector3 position = Random.insideUnitCircle.normalized;
+            position *= Random.Range(7, 10);
+            Instantiate(archer, position, Quaternion.identity);
         }
         GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>().position = Vector3.zero;
         roundOver = false;

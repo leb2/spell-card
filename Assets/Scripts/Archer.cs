@@ -3,26 +3,51 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Archer : Entity {
-    private GameObject _playerObj;
+    private GameObject player;
+    public GameObject projectile;
+    public float damage;
 
-    public float timeBetweenShots = 1;
+    public float speed;
+    public float timeBetweenShots;
+
 
 
     // Use this for initialization
     public new void Start()
     {
         base.Start();
-        _playerObj = GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.FindGameObjectWithTag("Player");
         StartCoroutine(ShootPlayer());
     }
 
     IEnumerator ShootPlayer() {
         Rigidbody2D body = GetComponent<Rigidbody2D>();
-        yield return new WaitForSeconds(timeBetweenShots);
+        while (true) {
+            yield return new WaitForSeconds(timeBetweenShots);
+            ShootPlayerSingle();
+        }
+
     }
 
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    private void ShootPlayerSingle() {
+        Vector3 direction = (player.transform.position - transform.position).normalized;
+        GameObject projectileObj = Instantiate(projectile, transform.position + direction * 1.5F, Quaternion.identity);
+        projectileObj.GetComponent<Rigidbody2D>().velocity = direction * 10;
+        projectileObj.GetComponent<ProjectileSpell>().targetTag = "Player";
+        projectileObj.GetComponent<ProjectileSpell>().damage = damage;
+    }
+
+
+
+    // Update is called once per frame
+    void Update () {
+        Rigidbody2D body = GetComponent<Rigidbody2D>();
+        Vector2 dirVector = new Vector2(player.transform.position.x - transform.position.x,
+                                        player.transform.position.y - transform.position.y);
+        if (dirVector.magnitude > 4) {
+            body.velocity = dirVector.normalized * speed * Time.deltaTime;
+        } else {
+            body.velocity = Vector2.zero;
+        }
+    }   
 }
