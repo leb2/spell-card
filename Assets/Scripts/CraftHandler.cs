@@ -47,6 +47,8 @@ public class CraftHandler : MonoBehaviour {
         foreach (KeyValuePair<ElementType, int> entry in inventory.elementCards) {
             ElementCard elementCard = InitializeButton(i, inventory.elementCards.Count,
                 elementCardPanel, elementCardPrefab) as ElementCard;
+            GameObject text = elementCard.gameObject.transform.GetChild(0).gameObject;
+            text.GetComponent<Text>().text = entry.Key.ToString();
             elementCard.elementType = entry.Key;
             i += 1;
         }
@@ -56,6 +58,8 @@ public class CraftHandler : MonoBehaviour {
         {
             ShapeCard shapeCard = InitializeButton(i, inventory.shapeCards.Count,
                 shapeCardPanel, shapeCardPrefab) as ShapeCard;
+            GameObject text = shapeCard.gameObject.transform.GetChild(0).gameObject;
+            text.GetComponent<Text>().text = entry.Key.ToString();
             shapeCard.shape = entry.Key;
             i += 1;
         }
@@ -107,6 +111,10 @@ public class CraftHandler : MonoBehaviour {
             SpellCard spellCard = InitializeButton(i, inventory.spells.Count,
                 spellCardPanel, spellCardPrefab) as SpellCard;
             spellCard.spell = spell;
+
+            GameObject text = spellCard.gameObject.transform.GetChild(0).gameObject;
+            text.GetComponent<Text>().text = spell.ToString();
+
             inventorySpellCards.Add(spellCard.gameObject);
             i += 1;
         }
@@ -114,6 +122,8 @@ public class CraftHandler : MonoBehaviour {
         foreach (Spell spell in inventory.equippedSpells) {
             SpellCard spellCard = InitializeButton(i, inventory.equippedSpells.Count,
                 equippedSpellsPanel, spellCardPrefab) as SpellCard;
+            GameObject text = spellCard.gameObject.transform.GetChild(0).gameObject;
+            text.GetComponent<Text>().text = spell.ToString();
             spellCard.spell = spell;
             inventorySpellCards.Add(spellCard.gameObject);
             i += 1;

@@ -22,4 +22,10 @@ public class Spell {
 
         this.damage = damages[this.elementType];
     }
+
+
+    public override string ToString()
+    {
+        return shape.ToString();
+    }
 }

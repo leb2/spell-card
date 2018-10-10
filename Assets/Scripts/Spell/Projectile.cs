@@ -26,7 +26,6 @@ public class Projectile : SpellEffect
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("projectile hit");
         if (other.gameObject.CompareTag(targetTag))
         {
             other.gameObject.GetComponent<Entity>().TakeDamage(damage);
@@ -36,7 +35,6 @@ public class Projectile : SpellEffect
 
     public override void Cast(Spell spell, Vector3 target)
     {
-        Debug.Log("ADFASDFSDFADSFASDF");
         Vector3 direction = (target - transform.position).normalized;
         GetComponent<Rigidbody2D>().velocity = direction * 50;
         GetComponent<Projectile>().damage = spell.damage;

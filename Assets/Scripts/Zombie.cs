@@ -20,7 +20,8 @@ public class Zombie : Enemy {
 	
 	// Update is called once per frame
 	void Update () {
-        Vector2 dirVector = new Vector2(player.transform.position.x - transform.position.x, player.transform.position.y - transform.position.y);
+        Vector2 dirVector = new Vector2(player.transform.position.x - transform.position.x,
+                                        player.transform.position.y - transform.position.y);
         rb2d.velocity = dirVector.normalized * speed * Time.deltaTime;
     }
 

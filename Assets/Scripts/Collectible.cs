@@ -10,7 +10,6 @@ public class Collectible : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Collected Spell");
         if (other.gameObject.CompareTag(targetTag))
         {
             Inventory inv = other.gameObject.GetComponent<Player>().inventory;

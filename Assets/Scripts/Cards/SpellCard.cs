@@ -16,4 +16,6 @@ public class SpellCard : Card
     {
         inv.spells.Add(spell);
     }
+
+
 }
