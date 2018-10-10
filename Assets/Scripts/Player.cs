@@ -8,6 +8,10 @@ public class Player : Entity {
     public float speed;
 
     public GameObject projectile;
+    public GameObject coneArea;
+    public GameObject lineArea;
+    public GameObject circleArea;
+
     public GameObject gameController;
 
     private Rigidbody2D rb2d;
@@ -39,9 +43,15 @@ public class Player : Entity {
 
     private void UseSpell(int spellIndex, Vector3 worldPoint) {
         Spell spell = inventory.equippedSpells[spellIndex];
-        Vector3 direction = (worldPoint - transform.position).normalized;
-        GameObject projectileObj = Instantiate(projectile, transform.position + direction * 1.5F, Quaternion.identity);
-        projectileObj.GetComponent<Rigidbody2D>().velocity = direction * 50;
-        projectileObj.GetComponent<ProjectileSpell>().damage = spell.damage;
+
+        Dictionary<ShapeType, GameObject> shapeAreaPrefabs = new Dictionary<ShapeType, GameObject>
+        {
+                {ShapeType.CONE, coneArea},
+                {ShapeType.CIRCLE, circleArea},
+                {ShapeType.LINE, lineArea},
+                {ShapeType.PROJECTILE, projectile}
+        };
+        GameObject spellObj = Instantiate(shapeAreaPrefabs[spell.shape], transform.position, Quaternion.identity);
+        spellObj.GetComponents<SpellEffect>()[0].Cast(spell, worldPoint);
     }
 }

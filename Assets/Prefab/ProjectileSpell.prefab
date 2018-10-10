@@ -37,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1078129184796930}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.09, y: 1.85, z: 0}
+  m_LocalPosition: {x: -5.5563817, y: -3.3643126, z: 0}
   m_LocalScale: {x: 0.2256144, y: 0.223665, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -96,7 +96,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1078129184796930}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0454461e86d84a5f8fc2c623b4b3e38, type: 3}
+  m_Script: {fileID: 11500000, guid: fbcd3dee3d99248468a3b379efea90c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   targetTag: Enemy

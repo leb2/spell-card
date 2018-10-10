@@ -33,11 +33,9 @@ public class Archer : Enemy {
         Vector3 direction = (player.transform.position - transform.position).normalized;
         GameObject projectileObj = Instantiate(projectile, transform.position + direction * 1.5F, Quaternion.identity);
         projectileObj.GetComponent<Rigidbody2D>().velocity = direction * 10;
-        projectileObj.GetComponent<ProjectileSpell>().targetTag = "Player";
-        projectileObj.GetComponent<ProjectileSpell>().damage = damage;
+        projectileObj.GetComponent<Projectile>().targetTag = "Player";
+        projectileObj.GetComponent<Projectile>().damage = damage;
     }
-
-
 
     // Update is called once per frame
     void Update () {

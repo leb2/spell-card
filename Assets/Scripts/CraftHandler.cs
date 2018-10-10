@@ -88,6 +88,7 @@ public class CraftHandler : MonoBehaviour {
             }
             ShapeType shape = _selectedShape.gameObject.GetComponent<ShapeCard>().shape;
             Modifier modifier = _selectedModifier.gameObject.GetComponent<ModifierCard>().modifier;
+
             Spell spell = new Spell(elementTypes, shape, modifier);
             inventory.spells.Add(spell);
             RefreshInventorySpells();

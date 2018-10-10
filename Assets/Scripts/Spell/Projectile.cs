@@ -2,18 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProjectileSpell : MonoBehaviour {
+public class Projectile : SpellEffect
+{
     public string targetTag = "Enemy";
+
     public float damage;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    // Use this for initialization
+    void Start()
+    {
 
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
         // Destroy if out of bounds;
         if (Mathf.Abs(transform.position.y) >= 10 || Mathf.Abs(transform.position.x) >= 10)
         {
@@ -29,5 +32,13 @@ public class ProjectileSpell : MonoBehaviour {
             other.gameObject.GetComponent<Entity>().TakeDamage(damage);
             Destroy(gameObject);
         }
+    }
+
+    public override void Cast(Spell spell, Vector3 target)
+    {
+        Debug.Log("ADFASDFSDFADSFASDF");
+        Vector3 direction = (target - transform.position).normalized;
+        GetComponent<Rigidbody2D>().velocity = direction * 50;
+        GetComponent<Projectile>().damage = spell.damage;
     }
 }

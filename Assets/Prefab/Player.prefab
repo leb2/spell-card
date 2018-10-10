@@ -37,8 +37,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1941942063017600}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.008, y: -0.652, z: 0}
-  m_LocalScale: {x: 0.391, y: 0.391, z: 0.391}
+  m_LocalPosition: {x: 2.09, y: 0.53, z: 0}
+  m_LocalScale: {x: 0.286994, y: 0.30849898, z: 0.391}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -103,6 +103,9 @@ MonoBehaviour:
   hp: 100
   speed: 300
   projectile: {fileID: 1078129184796930, guid: 1aad0875d264745a1851ecb97e832a1a, type: 2}
+  coneArea: {fileID: 1579929209683106, guid: 23d54465ff88649d7a5b2cd455c2681f, type: 2}
+  lineArea: {fileID: 1910754076089204, guid: fca9a913d12b249c89b80e8f63e1eb29, type: 2}
+  circleArea: {fileID: 1543850379695100, guid: fdbcc3781bb6743fc887eb8eb9622692, type: 2}
   gameController: {fileID: 0}
 --- !u!212 &212821106960241022
 SpriteRenderer:

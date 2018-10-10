@@ -37,7 +37,7 @@ public class GameController : MonoBehaviour {
         // Spawn zombies
         for (int i = 0; i < info.numZombies; i++) {
             Vector3 position = Random.insideUnitCircle.normalized;
-            position *= Random.Range(7, 10);
+            position *= Random.Range(7, 14);
             Instantiate(zombie, position, Quaternion.identity);
         }
 
