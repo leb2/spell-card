@@ -22,4 +22,9 @@ public class ShapeCard : Card {
         };
         gameObject.GetComponent<Image>().color = shapeColors[shape];
     }
+
+    public override void AddToInventory(Inventory inv)
+    {
+        inv.shapeCards[shape] += 1;
+    }
 }

@@ -8,11 +8,16 @@ public class Entity : MonoBehaviour {
 
     public bool TakeDamage(float damage) {
         hp -= damage;
-        if (hp < 0) {
+        if (hp <= 0) {
+            Die();
             Destroy(this.gameObject);
             return true;
         }
         return false;
+    }
+
+    public virtual void Die () {
+        return;
     }
 
 	// Use this for initialization

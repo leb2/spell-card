@@ -9,4 +9,9 @@ public class ModifierCard : Card {
     {
         cardType = CardType.MODIFIER;
     }
+
+    public override void AddToInventory(Inventory inv)
+    {
+        inv.modifiers.Add(modifier);
+    }
 }

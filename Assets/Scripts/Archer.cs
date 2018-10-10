@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Archer : Entity {
+public class Archer : Enemy {
     private GameObject player;
     public GameObject projectile;
     public float damage;

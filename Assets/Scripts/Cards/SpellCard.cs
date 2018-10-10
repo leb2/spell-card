@@ -11,4 +11,9 @@ public class SpellCard : Card
     {
         cardType = CardType.SPELL;
     }
+
+    public override void AddToInventory(Inventory inv)
+    {
+        inv.spells.Add(spell);
+    }
 }

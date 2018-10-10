@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Zombie : Entity {
+public class Zombie : Enemy {
 
     public float speed;
     public float damage = 10;

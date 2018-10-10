@@ -12,12 +12,6 @@ public class Player : Entity {
 
     private Rigidbody2D rb2d;
 
-    public new bool TakeDamage(float damage) {
-        bool died = base.TakeDamage(damage);
-        // TODO: Handle player death here
-        return died;
-    }
-
     // Use this for initialization
     public new void Start () {
         base.Start();

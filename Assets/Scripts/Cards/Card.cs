@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Card : MonoBehaviour {
+public abstract class Card : MonoBehaviour {
     public CardType cardType;
+    public abstract void AddToInventory(Inventory inv);
 }

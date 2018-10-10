@@ -18,4 +18,8 @@ public class ElementCard : Card {
         };
         gameObject.GetComponent<Image>().color = elementColors[elementType];
     }
+
+    public override void AddToInventory (Inventory inv) {
+        inv.elementCards[elementType] += 1;
+    }
 }
