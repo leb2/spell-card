@@ -51,6 +51,8 @@ public class Player : Entity {
                 {ShapeType.LINE, lineArea},
                 {ShapeType.PROJECTILE, projectile}
         };
+        //Debug.Log(gameObject.GetComponent<Rigidbody2D>().position);
+        Debug.Log(transform.position);
         GameObject spellObj = Instantiate(shapeAreaPrefabs[spell.shape], transform.position, Quaternion.identity);
         spellObj.GetComponents<SpellEffect>()[0].Cast(spell, worldPoint);
     }
