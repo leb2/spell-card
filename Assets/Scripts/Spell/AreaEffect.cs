@@ -14,10 +14,9 @@ public class AreaEffect : SpellEffect {
     }
 
     public override void Cast(Spell spell, Vector3 target) {
-        Debug.Log("Isndie super");
-        //this.spell = spell;
-        //transform.position = target;
-        //transform.position += Vector3.forward * 5;
+        this.spell = spell;
+        transform.position = target;
+        transform.position += Vector3.forward * 5;
     }
 
     void OnTriggerEnter2D(Collider2D other)
