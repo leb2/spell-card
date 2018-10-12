@@ -10,7 +10,7 @@ public class PlayerOriginEffect : AreaEffect {
         Vector3 extents = GetComponent<Collider2D>().bounds.extents;
         Debug.Log(direction.magnitude);
         Debug.Log(direction);
-        transform.position += (Vector3) direction * (extents.y + 1);
+        transform.position += (Vector3) direction * (extents.y + 0.5f);
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 90;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
