@@ -7,9 +7,8 @@ using UnityEngine.UI;
 public class ShapeCard : Card {
     public ShapeType shape;
 
-
-	// Use this for initialization
-	void Start () {
+    public ShapeCard(ShapeType shape) {
+        this.shape = shape;
         cardType = CardType.SHAPE;
 
         Dictionary<ShapeType, Color> shapeColors = new Dictionary<ShapeType, Color>
@@ -20,7 +19,7 @@ public class ShapeCard : Card {
             {ShapeType.CONE, Color.cyan},
 
         };
-        gameObject.GetComponent<Image>().color = shapeColors[shape];
+        color = shapeColors[shape];
     }
 
     public override void AddToInventory(Inventory inv)

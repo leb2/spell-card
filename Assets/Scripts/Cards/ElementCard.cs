@@ -7,8 +7,9 @@ public class ElementCard : Card {
     public ElementType elementType;
 
 	// Use this for initialization
-	void Start () {
+    public ElementCard(ElementType elementType) {
         cardType = CardType.ELEMENT;
+        this.elementType = elementType;
 
         Dictionary<ElementType, Color> elementColors = new Dictionary<ElementType, Color>
         {
@@ -16,7 +17,7 @@ public class ElementCard : Card {
             {ElementType.ICE, Color.blue},
             {ElementType.ROT, Color.green}
         };
-        gameObject.GetComponent<Image>().color = elementColors[elementType];
+        color = elementColors[elementType];
     }
 
     public override void AddToInventory (Inventory inv) {

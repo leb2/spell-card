@@ -7,9 +7,10 @@ public class SpellCard : Card
     public Spell spell;
 
     // Use this for initialization
-    void Start()
+    public SpellCard(Spell spell) 
     {
-        cardType = CardType.SPELL;
+        this.spell = spell;
+        this.cardType = CardType.SPELL;
     }
 
     public override void AddToInventory(Inventory inv)

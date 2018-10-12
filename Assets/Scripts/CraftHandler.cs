@@ -8,10 +8,7 @@ using UnityEngine.SceneManagement;
 
 public class CraftHandler : MonoBehaviour {
 
-    public GameObject elementCardPrefab;
-    public GameObject shapeCardPrefab;
-    public GameObject spellCardPrefab;
-    public GameObject modifierCardPrefab;
+    public GameObject cardPrefab;
 
     public GameObject elementCardPanel;
     public GameObject shapeCardPanel;
@@ -34,6 +31,10 @@ public class CraftHandler : MonoBehaviour {
     private Player _player;
     private List<GameObject> inventorySpellCards = new List<GameObject>();
     private List<Button> _equippedSpells = new List<Button>();
+
+    private List<CardUI> elementCardUIs = new List<CardUI>();
+    private List<CardUI> shapeCardUIs = new List<CardUI>();
+    private List<CardUI> modifierCardUIs = new List<CardUI>();
 
     void Start()
     {
@@ -62,35 +63,49 @@ public class CraftHandler : MonoBehaviour {
         // Spawn each element card centered 
         int i = 0;
         foreach (KeyValuePair<ElementType, int> entry in inventory.elementCards) {
-            ElementCard elementCard = InitializeButton(i, inventory.elementCards.Count,
-                elementCardPanel, elementCardPrefab) as ElementCard;
-            GameObject text = elementCard.gameObject.transform.GetChild(0).gameObject;
+            CardUI cardUI = InitializeButton(i, inventory.elementCards.Count, 
+                                             elementCardPanel, new ElementCard(entry.Key)) as CardUI;
+            elementCardUIs.Add(cardUI);
+            GameObject text = cardUI.gameObject.transform.GetChild(0).gameObject;
             text.GetComponent<Text>().text = entry.Key.ToString();
-            elementCard.elementType = entry.Key;
             i += 1;
         }
         // Spawn each shape card centered
         i = 0;
         foreach (KeyValuePair<ShapeType, int> entry in inventory.shapeCards)
         {
-            ShapeCard shapeCard = InitializeButton(i, inventory.shapeCards.Count,
-                shapeCardPanel, shapeCardPrefab) as ShapeCard;
-            GameObject text = shapeCard.gameObject.transform.GetChild(0).gameObject;
+            CardUI cardUI = InitializeButton(i, inventory.shapeCards.Count, 
+                                             shapeCardPanel, new ShapeCard(entry.Key)) as CardUI;
+            shapeCardUIs.Add(cardUI);
+            GameObject text = cardUI.gameObject.transform.GetChild(0).gameObject;
             text.GetComponent<Text>().text = entry.Key.ToString();
-            shapeCard.shape = entry.Key;
             i += 1;
         }
 
         // Spawn each modifier card centered
         i = 0;
         foreach(Modifier modifier in inventory.modifiers) {
-            ModifierCard modifierCard = InitializeButton(i, inventory.modifiers.Count,
-                modifierCardPanel, modifierCardPrefab) as ModifierCard;
-            modifierCard.modifier = modifier;
+            CardUI cardUI = InitializeButton(i, inventory.modifiers.Count, 
+                                             modifierCardPanel, new ModifierCard(modifier)) as CardUI;
+            modifierCardUIs.Add(cardUI);
             i += 1;
         }
         RefreshInventorySpells();
+        UpdateCardCounts();
     }
+
+    private void UpdateCardCounts() {
+        foreach(CardUI elementCardUI in elementCardUIs) {
+            ElementType elementType = (elementCardUI.card as ElementCard).elementType;
+            elementCardUI.SetCount(inventory.elementCards[elementType]);
+        }
+        foreach (CardUI shapeCardUI in shapeCardUIs)
+        {
+            ShapeType shapeType = (shapeCardUI.card as ShapeCard).shape;
+            shapeCardUI.SetCount(inventory.shapeCards[shapeType]);
+        }
+    }
+
 
     private void ClearSelection() {
         _selectedElements.Clear();
@@ -103,17 +118,24 @@ public class CraftHandler : MonoBehaviour {
         if (_selectedElements.Count != 0 && _selectedShape != null)
         {
             List<ElementType> elementTypes = new List<ElementType>();
+
             foreach (Button button in _selectedElements)
             {
-                elementTypes.Add(button.gameObject.GetComponent<ElementCard>().elementType);
+                ElementType elementType = (button.gameObject.GetComponent<CardUI>().card as ElementCard).elementType;
+                elementTypes.Add(elementType);
+                inventory.elementCards[elementType] -= 1;
             }
-            ShapeType shape = _selectedShape.gameObject.GetComponent<ShapeCard>().shape;
-            Modifier modifier = _selectedModifier.gameObject.GetComponent<ModifierCard>().modifier;
+            ShapeType shape = (_selectedShape.gameObject.GetComponent<CardUI>().card as ShapeCard).shape;
+            Modifier modifier = (_selectedModifier.gameObject.GetComponent<CardUI>().card as ModifierCard).modifier;
+
+            inventory.shapeCards[shape] -= 1;
+            inventory.modifiers.Remove(modifier);
 
             Spell spell = new Spell(elementTypes, shape, modifier);
             inventory.spells.Add(spell);
             RefreshInventorySpells();
             ClearSelection();
+            UpdateCardCounts();
         }
     }
 
@@ -125,38 +147,37 @@ public class CraftHandler : MonoBehaviour {
         int i = 0;
         foreach (Spell spell in inventory.spells)
         {
-            SpellCard spellCard = InitializeButton(i, inventory.spells.Count,
-                spellCardPanel, spellCardPrefab) as SpellCard;
-            spellCard.spell = spell;
+            CardUI spellCard = InitializeButton(i, inventory.spells.Count, 
+                                                spellCardPanel, new SpellCard(spell)) as CardUI;
+            spellCard.card = new SpellCard(spell);
 
             GameObject text = spellCard.gameObject.transform.GetChild(0).gameObject;
             text.GetComponent<Text>().text = spell.ToString();
-
             inventorySpellCards.Add(spellCard.gameObject);
             i += 1;
         }
         i = 0;
         foreach (Spell spell in inventory.equippedSpells) {
-            SpellCard spellCard = InitializeButton(i, inventory.equippedSpells.Count,
-                equippedSpellsPanel, spellCardPrefab) as SpellCard;
+            CardUI spellCard = InitializeButton(i, inventory.equippedSpells.Count, 
+                                                equippedSpellsPanel, new SpellCard(spell)) as CardUI;
             GameObject text = spellCard.gameObject.transform.GetChild(0).gameObject;
             text.GetComponent<Text>().text = spell.ToString();
-            spellCard.spell = spell;
             inventorySpellCards.Add(spellCard.gameObject);
             i += 1;
         }
     }
 
-    private Card InitializeButton(int i, int numCards, GameObject panel, GameObject prefab) {
-        GameObject newButton = Instantiate(prefab) as GameObject;
+    private CardUI InitializeButton(int i, int numCards, GameObject panel, Card card) {
+        GameObject newButton = Instantiate(cardPrefab) as GameObject;
         newButton.transform.SetParent(panel.transform, false);
         newButton.GetComponent<RectTransform>().localPosition = GetCenteredPosition(i, numCards);
 
         // Add event listener
         Button buttonComponent = newButton.GetComponent<Button>();
         buttonComponent.onClick.AddListener(() => elementClicked(buttonComponent));
-
-        return newButton.GetComponents<Card>()[0];
+        CardUI cardUI = newButton.GetComponents<CardUI>()[0];
+        cardUI.card = card;
+        return cardUI;
     }
 
     private Vector3 GetCenteredPosition(int i, int numCards) {
@@ -167,7 +188,8 @@ public class CraftHandler : MonoBehaviour {
     }
 
     private void elementClicked(Button button) {
-        Card card = button.gameObject.GetComponents<Card>()[0];
+        CardUI cardUI = button.gameObject.GetComponents<CardUI>()[0];
+        Card card = cardUI.card;
 
         if (card.cardType == CardType.ELEMENT) {
             if (_selectedElements.Contains(button))

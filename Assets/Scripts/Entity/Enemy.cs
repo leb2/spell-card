@@ -11,7 +11,7 @@ public class Enemy : Entity {
         //Debug.Log("here");
         //Object[] cards = Resources.LoadAll("Prefab/Collectibles");
         GameObject clone = Instantiate(collectible, transform.position, Quaternion.identity) as GameObject;
-        clone.GetComponent<Collectible>().card = new ElementCard();
+        clone.GetComponent<Collectible>().card = new ElementCard(ElementType.FIRE);
         return;
     }
 }

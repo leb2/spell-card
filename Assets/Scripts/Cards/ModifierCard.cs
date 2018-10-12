@@ -5,9 +5,10 @@ using UnityEngine;
 public class ModifierCard : Card {
     public Modifier modifier;
 
-    void Start()
-    {
+    public ModifierCard(Modifier modifier) {
+        this.modifier = modifier;
         cardType = CardType.MODIFIER;
+
     }
 
     public override void AddToInventory(Inventory inv)
