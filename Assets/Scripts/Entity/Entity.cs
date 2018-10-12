@@ -6,7 +6,7 @@ public class Entity : MonoBehaviour {
     public float maxHp;
     public float hp;
 
-    public bool TakeDamage(float damage) {
+    public virtual bool TakeDamage(float damage) {
         hp -= damage;
         if (hp <= 0) {
             Die();

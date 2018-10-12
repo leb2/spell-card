@@ -21,7 +21,7 @@ public class AreaEffect : SpellEffect {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (framesRemaining > 0) {
+        if (framesRemaining >= 0) {
             if (other.gameObject.CompareTag("Enemy"))
             {
                 other.gameObject.GetComponent<Entity>().TakeDamage(spell.damage);

@@ -80,6 +80,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetTag: Player
   card: {fileID: 0}
+  speed: 8
 --- !u!212 &212843719585460106
 SpriteRenderer:
   m_ObjectHideFlags: 1

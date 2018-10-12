@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : Entity {
 
@@ -11,6 +12,7 @@ public class Player : Entity {
     public GameObject coneArea;
     public GameObject lineArea;
     public GameObject circleArea;
+    public Slider HPBar;
 
     public GameObject gameController;
 
@@ -20,6 +22,8 @@ public class Player : Entity {
     public new void Start () {
         base.Start();
         rb2d = GetComponent<Rigidbody2D>();
+        HPBar.maxValue = maxHp;
+        HPBar.value = hp;
         inventory = new Inventory();
     }
 	
@@ -29,8 +33,11 @@ public class Player : Entity {
             return;
         }
 
-        rb2d.velocity = (new Vector2(Input.GetAxisRaw("Horizontal"),
-            Input.GetAxisRaw("Vertical"))).normalized * speed * Time.deltaTime;
+        transform.position = new Vector3(transform.position.x + Input.GetAxisRaw("Horizontal") * speed,
+            transform.position.y + Input.GetAxisRaw("Vertical") * speed, 0);
+        //transform.position.y = transform.position.x + Input.GetAxisRaw("Vertical") * speed;
+        //(new Vector2(Input.GetAxisRaw("Horizontal"),
+        //    Input.GetAxisRaw("Vertical"))).normalized * speed * Time.deltaTime, ForceMode2D.Impulse);
 
         // Cast Spells
         if (Input.GetKeyDown(KeyCode.Mouse0)) {
@@ -55,5 +62,21 @@ public class Player : Entity {
         Debug.Log(transform.position);
         GameObject spellObj = Instantiate(shapeAreaPrefabs[spell.shape], transform.position, Quaternion.identity);
         spellObj.GetComponents<SpellEffect>()[0].Cast(spell, worldPoint);
+    }
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            Debug.Log((transform.position - other.transform.position) * 100.0f);
+            rb2d.AddForce((transform.position - other.transform.position) * 30.0f, ForceMode2D.Impulse);
+        }
+    }
+
+    public override bool TakeDamage(float damage)
+    {
+        base.TakeDamage(damage);
+        HPBar.value -= damage;
+        return false; 
     }
 }
