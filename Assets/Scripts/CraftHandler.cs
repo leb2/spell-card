@@ -39,6 +39,23 @@ public class CraftHandler : MonoBehaviour {
     {
         craftButton.onClick.AddListener(CraftSelection);
         finishButton.onClick.AddListener(FinishCrafting);
+
+        elementSlot.onClick.AddListener(() =>
+        {
+            _selectedElements.Clear();
+            elementSlot.GetComponent<Image>().color = Color.white;
+        });
+        shapeSlot.onClick.AddListener(() =>
+        {
+            _selectedShape = null;
+            shapeSlot.GetComponent<Image>().color = Color.white;
+        });
+        modifierSlot.onClick.AddListener(() =>
+        {
+            _selectedModifier = null;
+            modifierSlot.GetComponent<Image>().color = Color.white;
+        });
+
         inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().inventory;
         Debug.Log(inventory);
 
