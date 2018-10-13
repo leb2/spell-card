@@ -55,7 +55,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 1
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -101,11 +101,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHp: 0
   hp: 0
+  speed: 0.03
+  speedModifier: 1
+  frozenFramesRemaining: 0
   collectible: {fileID: 1714566214604026, guid: 28d5f495c6c937a4f88e052e79fc7cf4,
     type: 2}
   projectile: {fileID: 1078129184796930, guid: 1aad0875d264745a1851ecb97e832a1a, type: 2}
   damage: 10
-  speed: 100
+  dashSpeed: 1
   timeBetweenShots: 1
 --- !u!212 &212732450761066754
 SpriteRenderer:
