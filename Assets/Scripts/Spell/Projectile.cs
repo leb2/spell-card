@@ -28,13 +28,14 @@ public class Projectile : SpellEffect
     {
         if (other.gameObject.CompareTag(targetTag))
         {
-            other.gameObject.GetComponent<Entity>().TakeDamage(damage);
+            spell.ApplyEffect(other);
             Destroy(gameObject);
         }
     }
 
     public override void Cast(Spell spell, Vector3 target)
     {
+        this.spell = spell;
         Vector3 direction = (target - transform.position).normalized;
         GetComponent<Rigidbody2D>().velocity = direction * 50;
         GetComponent<Projectile>().damage = spell.damage;

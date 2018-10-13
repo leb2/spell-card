@@ -6,6 +6,10 @@ public class Enemy : Entity {
 
     public GameObject collectible;
 
+    public override void Update() {
+        base.Update();
+    }
+
     public override void Die()
     {
         //Debug.Log("here");

@@ -24,7 +24,7 @@ public class AreaEffect : SpellEffect {
         if (framesRemaining >= 0) {
             if (other.gameObject.CompareTag("Enemy"))
             {
-                other.gameObject.GetComponent<Entity>().TakeDamage(spell.damage);
+                spell.ApplyEffect(other);
                 framesRemaining = 0;
             }
         }

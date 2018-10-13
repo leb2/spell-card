@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class Player : Entity {
 
     public Inventory inventory;
-    public float speed;
 
     public GameObject projectile;
     public GameObject coneArea;
@@ -28,7 +27,9 @@ public class Player : Entity {
     }
 	
 	// Update is called once per frame
-	void Update () {
+	public override void Update () {
+        base.Update();
+
         if (gameController.GetComponent<GameController>().roundOver) {
             return;
         }
@@ -59,7 +60,7 @@ public class Player : Entity {
                 {ShapeType.PROJECTILE, projectile}
         };
         //Debug.Log(gameObject.GetComponent<Rigidbody2D>().position);
-        Debug.Log(transform.position);
+        //Debug.Log(transform.position);
         GameObject spellObj = Instantiate(shapeAreaPrefabs[spell.shape], transform.position, Quaternion.identity);
         spellObj.GetComponents<SpellEffect>()[0].Cast(spell, worldPoint);
     }
@@ -68,7 +69,7 @@ public class Player : Entity {
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log((transform.position - other.transform.position) * 100.0f);
+            //Debug.Log((transform.position - other.transform.position) * 100.0f);
             rb2d.AddForce((transform.position - other.transform.position) * 30.0f, ForceMode2D.Impulse);
         }
     }

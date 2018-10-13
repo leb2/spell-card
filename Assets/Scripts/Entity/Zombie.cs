@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Zombie : Enemy {
 
-    public float speed;
     public float damage = 10;
 
     private Rigidbody2D rb2d;
@@ -19,10 +18,12 @@ public class Zombie : Enemy {
     }
 	
 	// Update is called once per frame
-	void Update () {
+	public override void Update () {
+        base.Update();
+
         Vector2 dirVector = new Vector2(player.transform.position.x - transform.position.x,
                                         player.transform.position.y - transform.position.y);
-        rb2d.velocity = dirVector.normalized * speed * Time.deltaTime;
+        rb2d.velocity = dirVector.normalized * speed * speedModifier * Time.deltaTime;
     }
 
     private void OnCollisionEnter2D(Collision2D other)

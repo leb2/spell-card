@@ -7,9 +7,7 @@ public class Archer : Enemy {
     public GameObject projectile;
     public float damage;
 
-    public float speed;
     public float timeBetweenShots;
-
 
 
     // Use this for initialization
@@ -38,7 +36,9 @@ public class Archer : Enemy {
     }
 
     // Update is called once per frame
-    void Update () {
+    public override void Update () {
+        base.Update();
+
         Rigidbody2D body = GetComponent<Rigidbody2D>();
         Vector2 dirVector = new Vector2(player.transform.position.x - transform.position.x,
                                         player.transform.position.y - transform.position.y);

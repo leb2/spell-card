@@ -100,10 +100,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHp: 0
-  hp: 0
+  hp: 20
+  speed: 100
+  speedModifier: 1
+  frozenFramesRemaining: 0
   collectible: {fileID: 1714566214604026, guid: 28d5f495c6c937a4f88e052e79fc7cf4,
     type: 2}
-  speed: 100
   damage: 10
 --- !u!212 &212385767631704544
 SpriteRenderer:
