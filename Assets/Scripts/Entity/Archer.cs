@@ -43,7 +43,7 @@ public class Archer : Enemy {
         Vector2 dirVector = new Vector2(player.transform.position.x - transform.position.x,
                                         player.transform.position.y - transform.position.y);
         if (dirVector.magnitude > 4) {
-            body.velocity = dirVector.normalized * speed * Time.deltaTime;
+            body.velocity = dirVector.normalized * speed * speedModifier * Time.deltaTime;
         } else {
             body.velocity = Vector2.zero;
         }

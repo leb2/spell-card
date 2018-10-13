@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Spell {
     public float damage;
@@ -23,25 +24,46 @@ public class Spell {
             {ElementType.ROT, 5}
         };
 
-        this.damage = damages[this.elementType] * this.magnitude;
-    }
 
-    public void ApplyEffect(Collider2D target) {
-        if (target.gameObject.CompareTag("Enemy"))
+        switch (this.elementType)
         {
-            target.gameObject.GetComponent<Entity>().TakeDamage(damage);
-            Debug.Log(elementType);
-
-            // apply slowing effect if applicable
-            if (elementType == ElementType.ICE) {
-                float baseSpeedMod = (float)(0.5);
-                int baseDuration = 150;
-                target.gameObject.GetComponent<Entity>().ModifySpeed(baseSpeedMod, baseDuration * magnitude);
-            }
+            case ElementType.FIRE:
+            case ElementType.ICE:
+                this.damage = damages[this.elementType] * this.magnitude;
+                break;
+            case ElementType.ROT:
+                this.damage = damages[this.elementType] + (2 * (this.magnitude - 1));
+                break;
+            default:
+                throw new Exception("Spell of unknown element encountered: " + elementType);
         }
     }
 
+    public void ApplyEffect(Collider2D target) {
+        Entity entity = target.gameObject.GetComponent<Entity>();
 
+        int baseDuration;
+        switch (elementType)
+        {
+            case ElementType.FIRE:
+                entity.TakeDamage(damage);
+                break;
+            case ElementType.ICE:
+                float baseSpeedMod = (float)(0.5);
+                baseDuration = 150; // 5 seconds
+                entity.ModifySpeed(baseSpeedMod, baseDuration * magnitude);
+                break;
+            case ElementType.ROT:
+                baseDuration = 90; // 3 seconds
+                entity.TakeDamage(damage, baseDuration);
+                break;
+            default:
+                throw new Exception("Spell of unknown element encountered: " + elementType);
+        }
+
+    }
+
+  
     public override string ToString()
     {
         return shape.ToString();
