@@ -23,14 +23,14 @@ public class CraftHandler : MonoBehaviour {
     public Button modifierSlot;
 
     private Inventory inventory;
-    private List<Button> _selectedElements = new List<Button>();
+    //private List<Button> _selectedElements = new List<Button>();
+    private List<ElementType> _selectedElements = new List<ElementType>();
     private Button _selectedShape = null;
     private Button _selectedModifier = null;
     private Button _selected;
     private List<Button> _slots;
     private Player _player;
     private List<GameObject> inventorySpellCards = new List<GameObject>();
-    private List<Button> _equippedSpells = new List<Button>();
 
     private List<CardUI> elementCardUIs = new List<CardUI>();
     private List<CardUI> shapeCardUIs = new List<CardUI>();
@@ -45,16 +45,19 @@ public class CraftHandler : MonoBehaviour {
         {
             _selectedElements.Clear();
             elementSlot.GetComponent<Image>().color = Color.white;
+            UpdateCardCounts();
         });
         shapeSlot.onClick.AddListener(() =>
         {
             _selectedShape = null;
             shapeSlot.GetComponent<Image>().color = Color.white;
+            UpdateCardCounts();
         });
         modifierSlot.onClick.AddListener(() =>
         {
             _selectedModifier = null;
             modifierSlot.GetComponent<Image>().color = Color.white;
+            UpdateCardCounts();
         });
 
         inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().inventory;
@@ -94,18 +97,40 @@ public class CraftHandler : MonoBehaviour {
         UpdateCardCounts();
     }
 
-    private void UpdateCardCounts() {
-        foreach(CardUI elementCardUI in elementCardUIs) {
-            ElementType elementType = (elementCardUI.card as ElementCard).elementType;
-            elementCardUI.SetCount(inventory.elementCards[elementType]);
+    private Dictionary<ElementType, int> ElementInUseCount() {
+        Dictionary<ElementType, int> countInUse = new Dictionary<ElementType, int>();
+        foreach (ElementType element in Enum.GetValues(typeof(ElementType)))
+        {
+            countInUse[element] = 0;
         }
+        foreach (ElementType type in _selectedElements)
+        {
+            countInUse[type] += 1;
+        }
+        return countInUse;
+    }
+
+    private void UpdateCardCounts()
+    {
+        Dictionary<ElementType, int> inUseCount = ElementInUseCount();
+        foreach (CardUI elementCardUI in elementCardUIs) {
+            ElementType elementType = (elementCardUI.card as ElementCard).elementType;
+            elementCardUI.SetCount(inventory.elementCards[elementType] - inUseCount[elementType]);
+        }
+
         foreach (CardUI shapeCardUI in shapeCardUIs)
         {
             ShapeType shapeType = (shapeCardUI.card as ShapeCard).shape;
-            shapeCardUI.SetCount(inventory.shapeCards[shapeType]);
+            int diff = 0;
+            if (_selectedShape == null) {
+                diff = 0;
+            } else {
+                ShapeType selectedShapeType = (_selectedShape.GetComponent<CardUI>().card as ShapeCard).shape;
+                diff = selectedShapeType == shapeType ? 1 : 0;
+            }
+            shapeCardUI.SetCount(inventory.shapeCards[shapeType] - diff);
         }
     }
-
 
     private void ClearSelection() {
         _selectedElements.Clear();
@@ -117,21 +142,23 @@ public class CraftHandler : MonoBehaviour {
     private void CraftSelection() {
         if (_selectedElements.Count != 0 && _selectedShape != null)
         {
-            List<ElementType> elementTypes = new List<ElementType>();
-
-            foreach (Button button in _selectedElements)
+            foreach (ElementType elementType in _selectedElements)
             {
-                ElementType elementType = (button.gameObject.GetComponent<CardUI>().card as ElementCard).elementType;
-                elementTypes.Add(elementType);
                 inventory.elementCards[elementType] -= 1;
             }
             ShapeType shape = (_selectedShape.gameObject.GetComponent<CardUI>().card as ShapeCard).shape;
-            Modifier modifier = (_selectedModifier.gameObject.GetComponent<CardUI>().card as ModifierCard).modifier;
-
             inventory.shapeCards[shape] -= 1;
-            inventory.modifiers.Remove(modifier);
 
-            Spell spell = new Spell(elementTypes, shape, modifier);
+            Spell spell;
+            if (_selectedModifier == null) {
+                spell = new Spell(_selectedElements, shape, null);
+
+            } else {
+                Modifier modifier = (_selectedModifier.gameObject.GetComponent<CardUI>().card as ModifierCard).modifier;
+                inventory.modifiers.Remove(modifier);
+                spell = new Spell(_selectedElements, shape, modifier);
+            }
+
             inventory.spells.Add(spell);
             RefreshInventorySpells();
             ClearSelection();
@@ -192,28 +219,29 @@ public class CraftHandler : MonoBehaviour {
         Card card = cardUI.card;
 
         if (card.cardType == CardType.ELEMENT) {
-            if (_selectedElements.Contains(button))
-            {
-                _selectedElements.Remove(button);
-                if (_selectedElements.Count == 0) {
-                    elementSlot.GetComponent<Image>().color = Color.white;
+            ElementType elementType = (cardUI.card as ElementCard).elementType;
+            if (inventory.elementCards[elementType] - ElementInUseCount()[elementType] > 0) {
+                // Make sure the element matches the existing element types.
+                if (_selectedElements.Count == 0 || _selectedElements[0] == elementType)
+                {
+                    elementSlot.GetComponent<Image>().color = Color.green;
+                    _selectedElements.Add(elementType);
                 }
             }
-            else
-            {
-                _selectedElements.Add(button);
-                elementSlot.GetComponent<Image>().color = Color.green;
 
-            }
         }
+
         if (card.cardType == CardType.SHAPE) {
             if (_selectedShape == button) {
                 _selectedShape = null;
             }
             else {
-                _selectedShape = button;
+                if (inventory.shapeCards[(button.GetComponent<CardUI>().card as ShapeCard).shape] > 0) {
+                    _selectedShape = button;
+                }
             }
         }
+
         if (card.cardType == CardType.MODIFIER) {
             if (_selectedModifier == button)
             {
@@ -235,6 +263,7 @@ public class CraftHandler : MonoBehaviour {
             }
             RefreshInventorySpells();
         }
+        UpdateCardCounts();
         UpdateColors();
     }
 
@@ -249,11 +278,5 @@ public class CraftHandler : MonoBehaviour {
         SceneManager.UnloadSceneAsync("MenuScene");
         GameController gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
         gameController.StartNextRound();
-    }
-
-    private void slotClicked(Button button) {
-        if (_selectedElements.Contains(button)) {
-            _selectedElements.Remove(button);
-        }
     }
 }

@@ -14,13 +14,13 @@ public class Inventory {
     {
         // Initialize inventory counts to 0
         foreach (ElementType element in Enum.GetValues(typeof(ElementType))) {
-            elementCards[element] = 5;
+            elementCards[element] = 1;
         }
         foreach (ShapeType shape in Enum.GetValues(typeof(ShapeType))) {
-            shapeCards[shape] = 5;
+            shapeCards[shape] = 1;
         }
         modifiers.Add(new Modifier());
-        equippedSpells.Add(new Spell(new List<ElementType> { ElementType.FIRE }, ShapeType.CONE, null));
+        equippedSpells.Add(new Spell(new List<ElementType> { ElementType.FIRE }, ShapeType.PROJECTILE, null));
 
     }
 }

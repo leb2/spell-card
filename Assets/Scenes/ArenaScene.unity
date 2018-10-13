@@ -844,39 +844,14 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114940009821571266, guid: 805c54af5be679c459d8f482e7252799,
         type: 2}
-      propertyPath: gameController
-      value: 
-      objectReference: {fileID: 60176446}
-    - target: {fileID: 50055055814570004, guid: 805c54af5be679c459d8f482e7252799,
-        type: 2}
-      propertyPath: m_Constraints
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114940009821571266, guid: 805c54af5be679c459d8f482e7252799,
-        type: 2}
-      propertyPath: speed
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 50055055814570004, guid: 805c54af5be679c459d8f482e7252799,
-        type: 2}
-      propertyPath: m_LinearDrag
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114940009821571266, guid: 805c54af5be679c459d8f482e7252799,
-        type: 2}
-      propertyPath: maxHp
-      value: 10000
-      objectReference: {fileID: 0}
-    - target: {fileID: 114940009821571266, guid: 805c54af5be679c459d8f482e7252799,
-        type: 2}
-      propertyPath: hp
-      value: 10000
-      objectReference: {fileID: 0}
-    - target: {fileID: 114940009821571266, guid: 805c54af5be679c459d8f482e7252799,
-        type: 2}
       propertyPath: HPBar
       value: 
       objectReference: {fileID: 603390735}
+    - target: {fileID: 114940009821571266, guid: 805c54af5be679c459d8f482e7252799,
+        type: 2}
+      propertyPath: gameController
+      value: 
+      objectReference: {fileID: 60176446}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 805c54af5be679c459d8f482e7252799, type: 2}
   m_IsPrefabAsset: 0
