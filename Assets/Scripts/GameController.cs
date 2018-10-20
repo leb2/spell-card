@@ -17,7 +17,7 @@ public class GameController : MonoBehaviour {
     private int _currRound = 0;
 
     public List<RoundInfo> rounds = new List<RoundInfo>{
-        new RoundInfo(7, 0, 0),
+        new RoundInfo(7, 2, 1),
         new RoundInfo(8, 0, 0),
         new RoundInfo(7, 2, 0),
         new RoundInfo(3, 4, 0),

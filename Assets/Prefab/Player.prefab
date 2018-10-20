@@ -99,9 +99,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed3f7ee4acbfb4915a7aafaf8793719b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 10000
-  hp: 10000
+  maxHp: 100
+  hp: 100
   speed: 0.1
+  speedModifier: 1
+  frozenFramesRemaining: 0
+  rotDamage: 0
+  rotFramesRemaining: 0
   projectile: {fileID: 1078129184796930, guid: 1aad0875d264745a1851ecb97e832a1a, type: 2}
   coneArea: {fileID: 1501815290534326, guid: 23d54465ff88649d7a5b2cd455c2681f, type: 2}
   lineArea: {fileID: 1346848879475456, guid: fca9a913d12b249c89b80e8f63e1eb29, type: 2}
