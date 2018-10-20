@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114447402184003762}
   - component: {fileID: 50506961437906372}
   - component: {fileID: 61947697962341942}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Archer
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -104,6 +104,8 @@ MonoBehaviour:
   speed: 0.03
   speedModifier: 1
   frozenFramesRemaining: 0
+  rotDamage: 0
+  rotFramesRemaining: 0
   collectible: {fileID: 1714566214604026, guid: 28d5f495c6c937a4f88e052e79fc7cf4,
     type: 2}
   projectile: {fileID: 1078129184796930, guid: 1aad0875d264745a1851ecb97e832a1a, type: 2}

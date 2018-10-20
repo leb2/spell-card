@@ -5,7 +5,6 @@ using UnityEngine;
 public class Archer : Enemy {
     private GameObject player;
     public GameObject projectile;
-    public float damage;
     public float dashSpeed;
     public float timeBetweenShots;
 

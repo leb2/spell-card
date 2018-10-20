@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 50800749786829824}
   - component: {fileID: 114046226255620986}
   - component: {fileID: 61228070576274284}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Zombie
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -101,9 +101,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHp: 30
   hp: 30
+  speed: 100
+  speedModifier: 1
+  frozenFramesRemaining: 0
+  rotDamage: 0
+  rotFramesRemaining: 0
   collectible: {fileID: 1714566214604026, guid: 28d5f495c6c937a4f88e052e79fc7cf4,
     type: 2}
-  speed: 100
   damage: 10
 --- !u!212 &212385767631704544
 SpriteRenderer:

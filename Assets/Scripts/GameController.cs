@@ -15,15 +15,42 @@ public class GameController : MonoBehaviour {
 
     private int _currRound = 0;
 
+    public List<RoundInfo> rounds = new List<RoundInfo>{
+        new RoundInfo(7, 0, 0),
+        new RoundInfo(8, 0, 0),
+        new RoundInfo(7, 2, 0),
+        new RoundInfo(3, 4, 0),
+        new RoundInfo(4, 6, 0),
+        new RoundInfo(6, 6, 0),
+        new RoundInfo(8, 2, 0),
+        new RoundInfo(8, 3, 0),
+        new RoundInfo(16, 0, 0),
+        new RoundInfo(10, 0, 0),
+        new RoundInfo(12, 2, 0),
+        new RoundInfo(10, 3, 0),
+        new RoundInfo(7, 0, 0),
+        new RoundInfo(4, 3, 0),
+        new RoundInfo(6, 2, 1),
+        new RoundInfo(3, 2, 2),
+        new RoundInfo(5, 2, 1),
+        new RoundInfo(7, 0, 5),
+        new RoundInfo(5, 4, 3)
+    };
 
-    [Serializable]
+
+    //[Serializable]
     public struct RoundInfo
     {
-        public int numZombies;
-        public int numArchers;
-    }
-    public List<RoundInfo> rounds;
+        public int numZombies, numArchers, numTanks;
 
+        //Constructor
+        public RoundInfo(int z, int a, int t)
+        {
+            this.numZombies = z;
+            this.numArchers = a;
+            this.numTanks = t;
+        }
+    }
 
     // Use this for initialization
     void Start () {

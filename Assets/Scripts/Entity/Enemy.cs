@@ -1,13 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class Enemy : Entity {
 
     public GameObject collectible;
+    public float damage;
 
     public override void Update() {
         base.Update();
+    }
+
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        Debug.Log("OnTriggerEnter called");
+        Physics.IgnoreCollision(other.GetComponent<Collider>(), GetComponent<Collider>(), true);
     }
 
     public override void Die()

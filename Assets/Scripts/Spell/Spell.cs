@@ -17,6 +17,7 @@ public class Spell {
         this.shape = shape;
         this.modifier = modifier;
 
+        // Base damage values for each element
         Dictionary<ElementType, float> damages = new Dictionary<ElementType, float>
         {
             {ElementType.FIRE, 10},
@@ -25,6 +26,7 @@ public class Spell {
         };
 
 
+        // Set damage of spell. Rot spells scale differently because they deal damage over time.
         switch (this.elementType)
         {
             case ElementType.FIRE:
@@ -49,12 +51,12 @@ public class Spell {
                 entity.TakeDamage(damage);
                 break;
             case ElementType.ICE:
-                float baseSpeedMod = (float)(0.5);
-                baseDuration = 150; // 5 seconds
+                float baseSpeedMod = (float)(0.5); // slow down by 50%
+                baseDuration = 150; // ~5 seconds
                 entity.ModifySpeed(baseSpeedMod, baseDuration * magnitude);
                 break;
             case ElementType.ROT:
-                baseDuration = 90; // 3 seconds
+                baseDuration = 90; // ~3 seconds
                 entity.TakeDamage(damage, baseDuration);
                 break;
             default:
@@ -66,6 +68,6 @@ public class Spell {
   
     public override string ToString()
     {
-        return shape.ToString();
+        return elementType.ToString() + " " + shape.ToString() + " (" + magnitude + ")";
     }
 }
