@@ -144,64 +144,7 @@ MonoBehaviour:
   roundOver: 0
   zombie: {fileID: 1034998923796440, guid: d882abb1d7eeafd4e96cfa5b640f8dba, type: 2}
   archer: {fileID: 1310965080815058, guid: 213d3c1cc16f9436f98c3255ad35a01f, type: 2}
-  rounds:
-  - numZombies: 3
-    numArchers: 1
-    numTanks: 0
-  - numZombies: 6
-    numArchers: 2
-    numTanks: 0
-  - numZombies: 7
-    numArchers: 3
-    numTanks: 0
-  - numZombies: 7
-    numArchers: 3
-    numTanks: 0
-  - numZombies: 7
-    numArchers: 3
-    numTanks: 0
-  - numZombies: 7
-    numArchers: 3
-    numTanks: 0
-  - numZombies: 7
-    numArchers: 3
-    numTanks: 0
-  - numZombies: 7
-    numArchers: 3
-    numTanks: 0
-  - numZombies: 7
-    numArchers: 3
-    numTanks: 0
-  - numZombies: 7
-    numArchers: 3
-    numTanks: 0
-  - numZombies: 7
-    numArchers: 3
-    numTanks: 0
-  - numZombies: 7
-    numArchers: 3
-    numTanks: 0
-  - numZombies: 7
-    numArchers: 3
-    numTanks: 0
-  - numZombies: 7
-    numArchers: 3
-    numTanks: 0
-  - numZombies: 7
-    numArchers: 3
-    numTanks: 0
-  - numZombies: 7
-    numArchers: 3
-    numTanks: 0
-  - numZombies: 7
-    numArchers: 3
-    numTanks: 0
-  - numZombies: 7
-    numArchers: 3
-    numTanks: 0
-  - numZombies: 7
-    numArchers: 3
-    numTanks: 0
+  tank: {fileID: 1310965080815058, guid: 176a7a142021a47b196f4aa84bd61cf4, type: 2}
 --- !u!212 &60176448
 SpriteRenderer:
   m_ObjectHideFlags: 0

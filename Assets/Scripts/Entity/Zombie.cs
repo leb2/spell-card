@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Zombie : Enemy {
 
-    new public float damage = 10;
-
     private Rigidbody2D rb2d;
     private GameObject player;
 

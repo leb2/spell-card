@@ -12,11 +12,7 @@ public class Enemy : Entity {
         base.Update();
     }
 
-    public void OnTriggerEnter2D(Collider2D other)
-    {
-        Debug.Log("OnTriggerEnter called");
-        Physics.IgnoreCollision(other.GetComponent<Collider>(), GetComponent<Collider>(), true);
-    }
+    public void SetMaxHp(float newHp) { maxHp = hp = newHp; }
 
     public override void Die()
     {

@@ -12,6 +12,7 @@ public class GameController : MonoBehaviour {
 
     public GameObject zombie;
     public GameObject archer;
+    public GameObject tank;
 
     private int _currRound = 0;
 
@@ -65,7 +66,8 @@ public class GameController : MonoBehaviour {
         for (int i = 0; i < info.numZombies; i++) {
             Vector3 position = Random.insideUnitCircle.normalized;
             position *= Random.Range(7, 14);
-            Instantiate(zombie, position, Quaternion.identity);
+            Enemy clone = Instantiate(zombie, position, Quaternion.identity).GetComponent<Enemy>();
+            clone.SetMaxHp(15 + _currRound * (float)7.5);
         }
 
         // Spawn archers
@@ -73,8 +75,19 @@ public class GameController : MonoBehaviour {
         {
             Vector3 position = Random.insideUnitCircle.normalized;
             position *= Random.Range(7, 10);
-            Instantiate(archer, position, Quaternion.identity);
+            Enemy clone = Instantiate(archer, position, Quaternion.identity).GetComponent<Enemy>();
+            clone.SetMaxHp(10 + _currRound * 5);
         }
+
+        // Spawn tanks
+        for (int i = 0; i < info.numTanks; i++)
+        {
+            Vector3 position = Random.insideUnitCircle.normalized;
+            position *= Random.Range(7, 14);
+            Enemy clone = Instantiate(tank, position, Quaternion.identity).GetComponent<Enemy>();
+            clone.SetMaxHp(30 + _currRound * 15);
+        }
+
         GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>().position = Vector3.zero;
         roundOver = false;
     }
