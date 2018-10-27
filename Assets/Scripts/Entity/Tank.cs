@@ -6,7 +6,9 @@ public class Tank : Enemy {
 
     private Rigidbody2D rb2d;
     private GameObject player;
-    public GameObject projectile;
+    private Vector2 spellTargetLocation; // used so that spell localtion does not change after indicator
+    public GameObject areaEffect;
+    public GameObject areaEffectIndicator;
     public float timeBetweenShots;
 
     // Use this for initialization
@@ -15,6 +17,9 @@ public class Tank : Enemy {
         base.Start();
         rb2d = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
+        spellTargetLocation = player.transform.position;
+        timeBetweenShots = timeBetweenShots + Random.value;
+        StartCoroutine(ShootPlayer());
     }
 
     IEnumerator ShootPlayer()
@@ -23,21 +28,27 @@ public class Tank : Enemy {
         while (true)
         {
             yield return new WaitForSeconds(timeBetweenShots);
+            TargetPlayerSingle();
+            yield return new WaitForSeconds(timeBetweenShots - 0.5F - (timeBetweenShots - 1F));
             ShootPlayerSingle();
         }
 
     }
 
+    private void TargetPlayerSingle()
+    {
+        spellTargetLocation = (Vector2)player.transform.position + Random.insideUnitCircle * 3;
+        GameObject areaEffectIndicatorObj = Instantiate(areaEffectIndicator, spellTargetLocation, Quaternion.identity);
+    }
+
     private void ShootPlayerSingle()
     {
-        Vector3 direction = (player.transform.position - transform.position).normalized;
-        GameObject projectileObj = Instantiate(projectile, transform.position + direction * 1.5F, Quaternion.identity);
+        GameObject areaEffectObj = Instantiate(areaEffect, spellTargetLocation, Quaternion.identity);
 
         List<ElementType> elementTypes = new List<ElementType>();
         elementTypes.Add(ElementType.FIRE);
-        projectileObj.GetComponent<Projectile>().spell = new Spell(elementTypes, ShapeType.PROJECTILE, null);
-        projectileObj.GetComponent<Rigidbody2D>().velocity = direction * 10;
-        projectileObj.GetComponent<Projectile>().targetTag = "Player";
+        areaEffectObj.GetComponent<AreaEffect>().spell = new Spell(elementTypes, ShapeType.CIRCLE, null);
+        areaEffectObj.GetComponent<AreaEffect>().targetTag = "Player";
     }
 
     // Update is called once per frame
