@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 50800749786829824}
   - component: {fileID: 114046226255620986}
   - component: {fileID: 61228070576274284}
+  - component: {fileID: 95859693443465962}
   m_Layer: 9
   m_Name: Zombie
   m_TagString: Enemy
@@ -37,8 +38,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1034998923796440}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.220826, y: -4.1472435, z: 0}
-  m_LocalScale: {x: 0.39436802, y: 0.39436802, z: 0.39436802}
+  m_LocalPosition: {x: -7.144, y: -2.453, z: 0}
+  m_LocalScale: {x: 0.29301542, y: 0.29301542, z: 0.29301542}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -75,19 +76,37 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.022134364, y: -0.053167105}
+  m_Offset: {x: -0.14647374, y: -0.026990175}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.4, y: 2.1}
+    oldSize: {x: 2.3, y: 2.4333334}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.1480747, y: 1.1496325}
+  m_Size: {x: 2.0511744, y: 2.3799415}
   m_EdgeRadius: 0
+--- !u!95 &95859693443465962
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1034998923796440}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c4838852380d14409868ce8103506491, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114046226255620986
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -144,7 +163,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c4e65c6cc67803148af4f04f3dd86187, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 29268260a5a6a4af9a72726786e3ce03, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
