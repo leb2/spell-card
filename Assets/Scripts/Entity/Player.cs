@@ -12,6 +12,7 @@ public class Player : Entity {
     public GameObject lineArea;
     public GameObject circleArea;
     public Slider HPBar;
+    public int[] spellCooldowns = { 0, 0 };
 
     public GameObject gameController;
 
@@ -41,10 +42,10 @@ public class Player : Entity {
         //    Input.GetAxisRaw("Vertical"))).normalized * speed * Time.deltaTime, ForceMode2D.Impulse);
 
         // Cast Spells
-        if (Input.GetKeyDown(KeyCode.Mouse0)) {
+        if (Input.GetKeyDown(KeyCode.Mouse0) && spellCooldowns[0] < 1) {
             UseSpell(0, Camera.main.ScreenToWorldPoint(Input.mousePosition));
         }
-        if (Input.GetKeyDown(KeyCode.Mouse1)) {
+        if (Input.GetKeyDown(KeyCode.Mouse1) && spellCooldowns[1] < 1) {
             UseSpell(1, Camera.main.ScreenToWorldPoint(Input.mousePosition));
         }
     }
