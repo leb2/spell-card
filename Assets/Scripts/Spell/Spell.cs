@@ -4,6 +4,7 @@ using System;
 
 public class Spell {
     public float damage;
+    public int cooldown;
 
     public ElementType elementType;
     public int magnitude; // number of element cards that are stacked
@@ -38,6 +39,25 @@ public class Spell {
                 break;
             default:
                 throw new Exception("Spell of unknown element encountered: " + elementType);
+        }
+
+        // Set cooldown of spell
+        switch (this.shape)
+        {
+            case ShapeType.CIRCLE:
+                this.cooldown = 5 * 30;
+                break;
+            case ShapeType.CONE:
+                this.cooldown = 5 * 30;
+                break;
+            case ShapeType.LINE:
+                this.cooldown = 2 * 30;
+                break;
+            case ShapeType.PROJECTILE:
+                this.cooldown = 1 * 30;
+                break;
+            default:
+                throw new Exception("Spell of unknown shape encountered: " + shape);
         }
     }
 

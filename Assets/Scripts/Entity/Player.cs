@@ -44,9 +44,18 @@ public class Player : Entity {
         // Cast Spells
         if (Input.GetKeyDown(KeyCode.Mouse0) && spellCooldowns[0] < 1) {
             UseSpell(0, Camera.main.ScreenToWorldPoint(Input.mousePosition));
+            spellCooldowns[0] = inventory.equippedSpells[0].cooldown;
         }
         if (Input.GetKeyDown(KeyCode.Mouse1) && spellCooldowns[1] < 1) {
             UseSpell(1, Camera.main.ScreenToWorldPoint(Input.mousePosition));
+            spellCooldowns[1] = inventory.equippedSpells[1].cooldown;
+        }
+
+        // decrement cooldowns
+        for (int i = 0; i < spellCooldowns.Length; i++) {
+            if (spellCooldowns[i] > 0){
+                spellCooldowns[i]--;
+            }
         }
     }
 

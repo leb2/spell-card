@@ -16,40 +16,85 @@ public class GameController : MonoBehaviour {
 
     private int _currRound = 0;
 
-    public List<RoundInfo> rounds = new List<RoundInfo>{
-        new RoundInfo(7, 1, 1),
-        new RoundInfo(8, 0, 0),
-        new RoundInfo(7, 2, 0),
-        new RoundInfo(3, 4, 0),
-        new RoundInfo(4, 6, 0),
-        new RoundInfo(6, 6, 0),
-        new RoundInfo(8, 2, 0),
-        new RoundInfo(8, 3, 0),
-        new RoundInfo(16, 0, 0),
-        new RoundInfo(10, 0, 0),
-        new RoundInfo(12, 2, 0),
-        new RoundInfo(10, 3, 0),
-        new RoundInfo(7, 0, 0),
-        new RoundInfo(4, 3, 0),
-        new RoundInfo(6, 2, 1),
-        new RoundInfo(3, 2, 2),
-        new RoundInfo(5, 2, 1),
-        new RoundInfo(7, 0, 5),
-        new RoundInfo(5, 4, 3)
+    public List<RoundEnemyInfo> rounds = new List<RoundEnemyInfo>{
+        new RoundEnemyInfo(7, 1, 1),
+        new RoundEnemyInfo(8, 0, 0),
+        new RoundEnemyInfo(7, 2, 0),
+        new RoundEnemyInfo(3, 4, 0),
+        new RoundEnemyInfo(4, 6, 0),
+        new RoundEnemyInfo(6, 6, 0),
+        new RoundEnemyInfo(8, 2, 0),
+        new RoundEnemyInfo(8, 3, 0),
+        new RoundEnemyInfo(16, 0, 0),
+        new RoundEnemyInfo(10, 0, 0),
+        new RoundEnemyInfo(12, 2, 0),
+        new RoundEnemyInfo(10, 3, 0),
+        new RoundEnemyInfo(7, 0, 0),
+        new RoundEnemyInfo(4, 3, 0),
+        new RoundEnemyInfo(6, 2, 1),
+        new RoundEnemyInfo(3, 2, 2),
+        new RoundEnemyInfo(5, 2, 1),
+        new RoundEnemyInfo(7, 0, 5),
+        new RoundEnemyInfo(5, 4, 3)
+    };
+
+    public List<RoundDropWeightInfo> dropWeights = new List<RoundDropWeightInfo>
+    {
+        new RoundDropWeightInfo(1, 0, 0, 0, 0, 0, 1),
+        new RoundDropWeightInfo(1, 0, 0, 0, 0, 0, 1),
+        new RoundDropWeightInfo(1, 0, 0, 0, 0, 0, 1),
+        new RoundDropWeightInfo(1, 0, 0, 0, 0, 0, 1),
+        new RoundDropWeightInfo(1, 0, 0, 0, 0, 0, 1),
+        // After level 5
+        new RoundDropWeightInfo(2, 0, 1, 0, 0, 0, 1),
+        new RoundDropWeightInfo(2, 0, 1, 0, 0, 0, 1),
+        new RoundDropWeightInfo(2, 0, 1, 0, 0, 0, 1),
+        // After level 8
+        new RoundDropWeightInfo(1, 0, 1, 0, 1, 0, 1),
+        new RoundDropWeightInfo(1, 0, 1, 0, 1, 0, 1),
+        new RoundDropWeightInfo(1, 0, 1, 0, 1, 0, 1),
+        new RoundDropWeightInfo(1, 0, 1, 0, 1, 0, 1),
+        // After level 12
+        new RoundDropWeightInfo(3, 0, 5, 0, 4, 5, 3),
+        new RoundDropWeightInfo(3, 0, 5, 0, 4, 5, 3),
+        new RoundDropWeightInfo(3, 0, 5, 0, 4, 5, 3),
+        // After level 15
+        new RoundDropWeightInfo(3, 5, 5, 0, 2, 3, 2),
+        new RoundDropWeightInfo(3, 0, 5, 0, 4, 5, 3),
+        // After level 17
+        new RoundDropWeightInfo(3, 4, 3, 4, 2, 2, 1),
+        new RoundDropWeightInfo(3, 4, 3, 4, 2, 2, 1)
     };
 
 
-    //[Serializable]
-    public struct RoundInfo
+    public struct RoundEnemyInfo
     {
         public int numZombies, numArchers, numTanks;
 
         //Constructor
-        public RoundInfo(int z, int a, int t)
+        public RoundEnemyInfo(int z, int a, int t)
         {
-            this.numZombies = z;
-            this.numArchers = a;
-            this.numTanks = t;
+            numZombies = z;
+            numArchers = a;
+            numTanks = t;
+        }
+    }
+
+    public struct RoundDropWeightInfo
+    {
+        public int fireWeight, iceWeight, rotWeight;
+        public int circleWeight, coneWeight, lineWeight, projectileWeight;
+
+        //Constructor
+        public RoundDropWeightInfo(int a, int b, int c, int d, int e, int f, int g)
+        {
+            fireWeight = a;
+            iceWeight = b;
+            rotWeight = c;
+            circleWeight = d;
+            coneWeight = e;
+            lineWeight = f;
+            projectileWeight = g;
         }
     }
 
@@ -60,13 +105,14 @@ public class GameController : MonoBehaviour {
 
 
     public void StartNextRound() {
-        RoundInfo info = rounds[_currRound];
+        RoundEnemyInfo info = rounds[_currRound];
 
         // Spawn zombies
         for (int i = 0; i < info.numZombies; i++) {
             Vector3 position = Random.insideUnitCircle.normalized;
             position *= Random.Range(7, 14);
             Enemy clone = Instantiate(zombie, position, Quaternion.identity).GetComponent<Enemy>();
+            clone.dropWeights = dropWeights[_currRound];
             clone.SetMaxHp(15 + _currRound * (float)7.5);
         }
 
@@ -76,6 +122,7 @@ public class GameController : MonoBehaviour {
             Vector3 position = Random.insideUnitCircle.normalized;
             position *= Random.Range(7, 10);
             Enemy clone = Instantiate(archer, position, Quaternion.identity).GetComponent<Enemy>();
+            clone.dropWeights = dropWeights[_currRound];
             clone.SetMaxHp(10 + _currRound * 5);
         }
 
@@ -85,6 +132,7 @@ public class GameController : MonoBehaviour {
             Vector3 position = Random.insideUnitCircle.normalized;
             position *= Random.Range(7, 14);
             Enemy clone = Instantiate(tank, position, Quaternion.identity).GetComponent<Enemy>();
+            clone.dropWeights = dropWeights[_currRound];
             clone.SetMaxHp(30 + _currRound * 15);
         }
 
