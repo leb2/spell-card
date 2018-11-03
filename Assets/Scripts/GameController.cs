@@ -72,11 +72,11 @@ public class GameController : MonoBehaviour {
         public int numZombies, numArchers, numTanks;
 
         //Constructor
-        public RoundEnemyInfo(int z, int a, int t)
+        public RoundEnemyInfo(int zombies, int archers, int tanks)
         {
-            numZombies = z;
-            numArchers = a;
-            numTanks = t;
+            numZombies = zombies;
+            numArchers = archers;
+            numTanks = tanks;
         }
     }
 
@@ -86,15 +86,16 @@ public class GameController : MonoBehaviour {
         public int circleWeight, coneWeight, lineWeight, projectileWeight;
 
         //Constructor
-        public RoundDropWeightInfo(int a, int b, int c, int d, int e, int f, int g)
+        public RoundDropWeightInfo(int fire, int ice, int rot, 
+                                   int circle, int cone, int line, int projectile)
         {
-            fireWeight = a;
-            iceWeight = b;
-            rotWeight = c;
-            circleWeight = d;
-            coneWeight = e;
-            lineWeight = f;
-            projectileWeight = g;
+            fireWeight = fire;
+            iceWeight = ice;
+            rotWeight = rot;
+            circleWeight = circle;
+            coneWeight = cone;
+            lineWeight = line;
+            projectileWeight = projectile;
         }
     }
 
@@ -110,7 +111,7 @@ public class GameController : MonoBehaviour {
         // Spawn zombies
         for (int i = 0; i < info.numZombies; i++) {
             Vector3 position = Random.insideUnitCircle.normalized;
-            position *= Random.Range(7, 14);
+            position *= Random.Range(7, 8);
             Enemy clone = Instantiate(zombie, position, Quaternion.identity).GetComponent<Enemy>();
             clone.dropWeights = dropWeights[_currRound];
             clone.SetMaxHp(15 + _currRound * (float)7.5);
@@ -120,7 +121,7 @@ public class GameController : MonoBehaviour {
         for (int i = 0; i < info.numArchers; i++)
         {
             Vector3 position = Random.insideUnitCircle.normalized;
-            position *= Random.Range(7, 10);
+            position *= Random.Range(7, 8);
             Enemy clone = Instantiate(archer, position, Quaternion.identity).GetComponent<Enemy>();
             clone.dropWeights = dropWeights[_currRound];
             clone.SetMaxHp(10 + _currRound * 5);
@@ -130,7 +131,7 @@ public class GameController : MonoBehaviour {
         for (int i = 0; i < info.numTanks; i++)
         {
             Vector3 position = Random.insideUnitCircle.normalized;
-            position *= Random.Range(7, 14);
+            position *= Random.Range(7, 8);
             Enemy clone = Instantiate(tank, position, Quaternion.identity).GetComponent<Enemy>();
             clone.dropWeights = dropWeights[_currRound];
             clone.SetMaxHp(30 + _currRound * 15);
