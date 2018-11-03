@@ -5,7 +5,6 @@ using UnityEngine;
 public class Projectile : SpellEffect
 {
     public string targetTag = "Enemy";
-
     public float damage;
 
     // Use this for initialization

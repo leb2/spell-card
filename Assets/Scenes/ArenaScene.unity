@@ -564,7 +564,7 @@ SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 826359610}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -597,7 +597,7 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 1
+  m_DrawMode: 0
   m_Size: {x: 14.4, y: 10.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
@@ -636,7 +636,7 @@ BoxCollider2D:
     oldSize: {x: 14.4, y: 10.8}
     newSize: {x: 14.4, y: 10.8}
     adaptiveTilingThreshold: 0.5
-    drawMode: 1
+    drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
@@ -661,7 +661,7 @@ BoxCollider2D:
     oldSize: {x: 14.4, y: 10.8}
     newSize: {x: 14.4, y: 10.8}
     adaptiveTilingThreshold: 0.5
-    drawMode: 1
+    drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
@@ -686,7 +686,7 @@ BoxCollider2D:
     oldSize: {x: 14.4, y: 10.8}
     newSize: {x: 14.4, y: 10.8}
     adaptiveTilingThreshold: 0.5
-    drawMode: 1
+    drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
@@ -711,35 +711,12 @@ BoxCollider2D:
     oldSize: {x: 14.4, y: 10.8}
     newSize: {x: 14.4, y: 10.8}
     adaptiveTilingThreshold: 0.5
-    drawMode: 1
+    drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 0.3592205, y: 10.8}
   m_EdgeRadius: 0
---- !u!1 &847489798 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1941942063017600, guid: 805c54af5be679c459d8f482e7252799,
-    type: 2}
-  m_PrefabInternal: {fileID: 1471264778}
---- !u!95 &847489804
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 847489798}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 22f7ee496fe2f784b95b563231256c11, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1002380113
 GameObject:
   m_ObjectHideFlags: 0
@@ -1054,62 +1031,24 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 212821106960241022, guid: 805c54af5be679c459d8f482e7252799,
         type: 2}
-      propertyPath: m_Sprite
+      propertyPath: m_Color.r
+      value: 0.98823535
+      objectReference: {fileID: 0}
+    - target: {fileID: 212821106960241022, guid: 805c54af5be679c459d8f482e7252799,
+        type: 2}
+      propertyPath: m_Color.g
+      value: 0.98823535
+      objectReference: {fileID: 0}
+    - target: {fileID: 212821106960241022, guid: 805c54af5be679c459d8f482e7252799,
+        type: 2}
+      propertyPath: m_Color.b
+      value: 0.98823535
+      objectReference: {fileID: 0}
+    - target: {fileID: 212821106960241022, guid: 805c54af5be679c459d8f482e7252799,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 21300000, guid: 37d2ea22a21dcf54ab172e649f12bbd7,
-        type: 3}
-    - target: {fileID: 4869988558080628, guid: 805c54af5be679c459d8f482e7252799, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4869988558080628, guid: 805c54af5be679c459d8f482e7252799, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4869988558080628, guid: 805c54af5be679c459d8f482e7252799, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 61303328130733102, guid: 805c54af5be679c459d8f482e7252799,
-        type: 2}
-      propertyPath: m_SpriteTilingProperty.border.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 61303328130733102, guid: 805c54af5be679c459d8f482e7252799,
-        type: 2}
-      propertyPath: m_SpriteTilingProperty.border.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 61303328130733102, guid: 805c54af5be679c459d8f482e7252799,
-        type: 2}
-      propertyPath: m_SpriteTilingProperty.border.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 61303328130733102, guid: 805c54af5be679c459d8f482e7252799,
-        type: 2}
-      propertyPath: m_SpriteTilingProperty.border.w
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 61303328130733102, guid: 805c54af5be679c459d8f482e7252799,
-        type: 2}
-      propertyPath: m_SpriteTilingProperty.pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 61303328130733102, guid: 805c54af5be679c459d8f482e7252799,
-        type: 2}
-      propertyPath: m_SpriteTilingProperty.pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 61303328130733102, guid: 805c54af5be679c459d8f482e7252799,
-        type: 2}
-      propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 0.53
-      objectReference: {fileID: 0}
-    - target: {fileID: 61303328130733102, guid: 805c54af5be679c459d8f482e7252799,
-        type: 2}
-      propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 0.82
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 805c54af5be679c459d8f482e7252799, type: 2}
   m_IsPrefabAsset: 0

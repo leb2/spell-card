@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Archer : Enemy {
+
     private GameObject player;
     public GameObject projectile;
     public float dashSpeed;
