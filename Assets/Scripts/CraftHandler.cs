@@ -22,6 +22,14 @@ public class CraftHandler : MonoBehaviour {
     public Button shapeSlot;
     public Button modifierSlot;
 
+    public Sprite fireImage;
+    public Sprite iceImage;
+    public Sprite rotImage;
+    public Sprite circleImage;
+    public Sprite coneImage;
+    public Sprite lineImage;
+    public Sprite projectileImage;
+
     private Inventory inventory;
     //private List<Button> _selectedElements = new List<Button>();
     private List<ElementType> _selectedElements = new List<ElementType>();
@@ -66,8 +74,23 @@ public class CraftHandler : MonoBehaviour {
         // Spawn each element card centered 
         int i = 0;
         foreach (KeyValuePair<ElementType, int> entry in inventory.elementCards) {
+            Sprite cardImage;
+            switch (entry.Key) {
+                case ElementType.FIRE:
+                    cardImage = fireImage;
+                    break;
+                case ElementType.ICE:
+                    cardImage = iceImage;
+                    break;
+                case ElementType.ROT:
+                    cardImage = rotImage;
+                    break;
+                default:
+                    cardImage = null;
+                    break;
+            }
             CardUI cardUI = InitializeButton(i, inventory.elementCards.Count, 
-                                             elementCardPanel, new ElementCard(entry.Key)) as CardUI;
+                                             elementCardPanel, new ElementCard(entry.Key), cardImage) as CardUI;
             elementCardUIs.Add(cardUI);
             GameObject text = cardUI.gameObject.transform.GetChild(0).gameObject;
             text.GetComponent<Text>().text = entry.Key.ToString();
@@ -77,8 +100,27 @@ public class CraftHandler : MonoBehaviour {
         i = 0;
         foreach (KeyValuePair<ShapeType, int> entry in inventory.shapeCards)
         {
+            Sprite cardImage;
+            switch (entry.Key)
+            {
+                case ShapeType.CIRCLE:
+                    cardImage = circleImage;
+                    break;
+                case ShapeType.CONE:
+                    cardImage = coneImage;
+                    break;
+                case ShapeType.LINE:
+                    cardImage = lineImage;
+                    break;
+                case ShapeType.PROJECTILE:
+                    cardImage = projectileImage;
+                    break;
+                default:
+                    cardImage = null;
+                    break;
+            }
             CardUI cardUI = InitializeButton(i, inventory.shapeCards.Count, 
-                                             shapeCardPanel, new ShapeCard(entry.Key)) as CardUI;
+                                             shapeCardPanel, new ShapeCard(entry.Key), cardImage) as CardUI;
             shapeCardUIs.Add(cardUI);
             GameObject text = cardUI.gameObject.transform.GetChild(0).gameObject;
             text.GetComponent<Text>().text = entry.Key.ToString();
@@ -89,7 +131,7 @@ public class CraftHandler : MonoBehaviour {
         i = 0;
         foreach(Modifier modifier in inventory.modifiers) {
             CardUI cardUI = InitializeButton(i, inventory.modifiers.Count, 
-                                             modifierCardPanel, new ModifierCard(modifier)) as CardUI;
+                                             modifierCardPanel, new ModifierCard(modifier), null) as CardUI;
             modifierCardUIs.Add(cardUI);
             i += 1;
         }
@@ -175,7 +217,7 @@ public class CraftHandler : MonoBehaviour {
         foreach (Spell spell in inventory.spells)
         {
             CardUI spellCard = InitializeButton(i, inventory.spells.Count, 
-                                                spellCardPanel, new SpellCard(spell)) as CardUI;
+                                                spellCardPanel, new SpellCard(spell), null) as CardUI;
             spellCard.card = new SpellCard(spell);
 
             GameObject text = spellCard.gameObject.transform.GetChild(0).gameObject;
@@ -186,7 +228,7 @@ public class CraftHandler : MonoBehaviour {
         i = 0;
         foreach (Spell spell in inventory.equippedSpells) {
             CardUI spellCard = InitializeButton(i, inventory.equippedSpells.Count, 
-                                                equippedSpellsPanel, new SpellCard(spell)) as CardUI;
+                                                equippedSpellsPanel, new SpellCard(spell), null) as CardUI;
             GameObject text = spellCard.gameObject.transform.GetChild(0).gameObject;
             text.GetComponent<Text>().text = spell.ToString();
             inventorySpellCards.Add(spellCard.gameObject);
@@ -194,10 +236,16 @@ public class CraftHandler : MonoBehaviour {
         }
     }
 
-    private CardUI InitializeButton(int i, int numCards, GameObject panel, Card card) {
+    private CardUI InitializeButton(int i, int numCards, GameObject panel, Card card, Sprite sprite) {
         GameObject newButton = Instantiate(cardPrefab) as GameObject;
         newButton.transform.SetParent(panel.transform, false);
         newButton.GetComponent<RectTransform>().localPosition = GetCenteredPosition(i, numCards);
+        if (sprite != null) {
+            newButton.GetComponent<Image>().sprite = sprite;
+            newButton.GetComponent<Image>().color = Color.white;
+            newButton.GetComponents<CardUI>()[0].gameObject.transform.GetChild(0).gameObject
+                     .GetComponent<Text>().enabled = false;
+        }
 
         // Add event listener
         Button buttonComponent = newButton.GetComponent<Button>();

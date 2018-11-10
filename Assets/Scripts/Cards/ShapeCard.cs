@@ -11,15 +11,15 @@ public class ShapeCard : Card {
         this.shape = shape;
         cardType = CardType.SHAPE;
 
-        Dictionary<ShapeType, Color> shapeColors = new Dictionary<ShapeType, Color>
-        {
-            {ShapeType.CIRCLE, Color.magenta},
-            {ShapeType.LINE, Color.blue},
-            {ShapeType.PROJECTILE, Color.green},
-            {ShapeType.CONE, Color.cyan},
+        //Dictionary<ShapeType, Color> shapeColors = new Dictionary<ShapeType, Color>
+        //{
+        //    {ShapeType.CIRCLE, Color.magenta},
+        //    {ShapeType.LINE, Color.blue},
+        //    {ShapeType.PROJECTILE, Color.green},
+        //    {ShapeType.CONE, Color.cyan},
 
-        };
-        color = shapeColors[shape];
+        //};
+        //color = shapeColors[shape];
     }
 
     public override void AddToInventory(Inventory inv)

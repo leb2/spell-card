@@ -30,10 +30,17 @@ public class Archer : Enemy {
     }
 
     private void DashOrthogonal() {
-        Vector2 playerDirection = player.transform.position - transform.position;
-        Vector2 moveDirection = Vector2.Perpendicular(playerDirection);
-        int leftOrRight = (Random.value > 0.5f) ? -1 : 1;
-        GetComponent<Rigidbody2D>().velocity = moveDirection * dashSpeed * leftOrRight;
+        if (GetComponent<Renderer>().isVisible) {
+            Vector2 playerDirection = player.transform.position - transform.position;
+            Vector2 moveDirection = Vector2.Perpendicular(playerDirection);
+            int leftOrRight = (Random.value > 0.5f) ? -1 : 1;
+            GetComponent<Rigidbody2D>().velocity = moveDirection * dashSpeed * leftOrRight;
+        } else {
+            Rigidbody2D body = GetComponent<Rigidbody2D>();
+            Vector2 dirVector = new Vector2(player.transform.position.x - transform.position.x,
+                                            player.transform.position.y - transform.position.y);
+            body.position += dirVector.normalized * speed;
+        }
     }
 
     private void ShootPlayerSingle() {
