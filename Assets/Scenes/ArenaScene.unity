@@ -1025,6 +1025,16 @@ Prefab:
       propertyPath: gameController
       value: 
       objectReference: {fileID: 60176446}
+    - target: {fileID: 114940009821571266, guid: 805c54af5be679c459d8f482e7252799,
+        type: 2}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1979931641}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 805c54af5be679c459d8f482e7252799, type: 2}
   m_IsPrefabAsset: 0
+--- !u!95 &1979931641 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 95283211107025892, guid: 805c54af5be679c459d8f482e7252799,
+    type: 2}
+  m_PrefabInternal: {fileID: 1471264778}
