@@ -54,7 +54,7 @@ public class Spell {
                 this.cooldown = 2 * 30;
                 break;
             case ShapeType.PROJECTILE:
-                this.cooldown = 1 * 30;
+                this.cooldown = (int)(0.3 * 30);
                 break;
             default:
                 throw new Exception("Spell of unknown shape encountered: " + shape);
