@@ -14,6 +14,8 @@ public class Player : Entity {
     public Slider HPBar;
     public int[] spellCooldowns = { 0, 0 };
 
+    public Animator animator;
+
     public GameObject gameController;
 
     private Rigidbody2D rb2d;
@@ -40,6 +42,10 @@ public class Player : Entity {
         //transform.position.y = transform.position.x + Input.GetAxisRaw("Vertical") * speed;
         //(new Vector2(Input.GetAxisRaw("Horizontal"),
         //    Input.GetAxisRaw("Vertical"))).normalized * speed * Time.deltaTime, ForceMode2D.Impulse);
+
+        //update animator with position info
+        animator.SetFloat("HorzSpeed", Input.GetAxisRaw("Horizontal") * speed);
+        animator.SetFloat("VertSpeed", Input.GetAxisRaw("Vertical") * speed);
 
         // Cast Spells
         if (Input.GetKeyDown(KeyCode.Mouse0) && spellCooldowns[0] < 1) {
