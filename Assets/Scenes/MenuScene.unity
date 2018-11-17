@@ -188,8 +188,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1553367134}
   m_HandleRect: {fileID: 1553367133}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 1
+  m_Value: 0
+  m_Size: 0.20780016
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -261,7 +261,6 @@ RectTransform:
   - {fileID: 1331259591}
   - {fileID: 909945834}
   - {fileID: 1839280847}
-  - {fileID: 1334965081}
   m_Father: {fileID: 1048658659}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -703,8 +702,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.25333333}
-  m_AnchoredPosition: {x: -358.69995, y: 35.100098}
-  m_SizeDelta: {x: -83.8, y: -28.4}
+  m_AnchoredPosition: {x: -36.48999, y: 253.19998}
+  m_SizeDelta: {x: -173.77, y: -28.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &664476731
 MonoBehaviour:
@@ -1060,7 +1059,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.19421402, y: -0.000002326984}
+  m_AnchoredPosition: {x: -0.19412309, y: 47.73835}
   m_SizeDelta: {x: 0.19427, y: 98.35}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1011675971
@@ -1848,12 +1847,12 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1375980275}
-  m_Father: {fileID: 116973832}
-  m_RootOrder: 4
+  m_Father: {fileID: 1558701213}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 459, y: 31}
+  m_AnchoredPosition: {x: 105.40007, y: -126.394684}
   m_SizeDelta: {x: 119, y: 57.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1334965082
@@ -2104,6 +2103,7 @@ RectTransform:
   m_Children:
   - {fileID: 664476730}
   - {fileID: 2010841014}
+  - {fileID: 1334965081}
   m_Father: {fileID: 1268848767}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2692,7 +2692,7 @@ MonoBehaviour:
   m_CancelButton: Cancel
   m_InputActionsPerSecond: 10
   m_RepeatDelay: 0.5
-  m_ForceModuleActive: 0
+  m_ForceModuleActive: 1
 --- !u!114 &2060072811
 MonoBehaviour:
   m_ObjectHideFlags: 0

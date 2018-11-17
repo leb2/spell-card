@@ -323,6 +323,7 @@ public class CraftHandler : MonoBehaviour {
     }
 
     private void FinishCrafting() {
+        Debug.Log("triggered FInishCrafting");
         SceneManager.UnloadSceneAsync("MenuScene");
         GameController gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
         gameController.StartNextRound();
