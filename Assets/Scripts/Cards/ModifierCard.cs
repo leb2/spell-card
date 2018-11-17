@@ -11,8 +11,8 @@ public class ModifierCard : Card {
 
     }
 
-    public override void AddToInventory(Inventory inv)
+    public override void Collect(Player p)
     {
-        inv.modifiers.Add(modifier);
+        p.inventory.modifiers.Add(modifier);
     }
 }

@@ -22,8 +22,8 @@ public class ShapeCard : Card {
         //color = shapeColors[shape];
     }
 
-    public override void AddToInventory(Inventory inv)
+    public override void Collect(Player p)
     {
-        inv.shapeCards[shape] += 1;
+        p.inventory.shapeCards[shape] += 1;
     }
 }

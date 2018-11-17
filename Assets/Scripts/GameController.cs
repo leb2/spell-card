@@ -40,11 +40,11 @@ public class GameController : MonoBehaviour {
 
     public List<RoundDropWeightInfo> dropWeights = new List<RoundDropWeightInfo>
     {
-        new RoundDropWeightInfo(1, 0, 0, 0, 0, 0, 1),
-        new RoundDropWeightInfo(1, 0, 0, 0, 0, 0, 1),
-        new RoundDropWeightInfo(1, 0, 0, 0, 0, 0, 1),
-        new RoundDropWeightInfo(1, 0, 0, 0, 0, 0, 1),
-        new RoundDropWeightInfo(1, 0, 0, 0, 0, 0, 1),
+        new RoundDropWeightInfo(2, 0, 0, 0, 0, 0, 1),
+        new RoundDropWeightInfo(2, 0, 0, 0, 0, 0, 1),
+        new RoundDropWeightInfo(2, 0, 0, 0, 0, 0, 1),
+        new RoundDropWeightInfo(2, 0, 0, 0, 0, 0, 1),
+        new RoundDropWeightInfo(2, 0, 0, 0, 0, 0, 1),
         // After level 5
         new RoundDropWeightInfo(2, 0, 1, 0, 0, 0, 1),
         new RoundDropWeightInfo(2, 0, 1, 0, 0, 0, 1),
@@ -106,14 +106,14 @@ public class GameController : MonoBehaviour {
 
 
     public void StartNextRound() {
-        RoundEnemyInfo info = rounds[_currRound];
+        RoundEnemyInfo info = rounds[_currRound % rounds.Count];
 
         // Spawn zombies
         for (int i = 0; i < info.numZombies; i++) {
             Vector3 position = Random.insideUnitCircle.normalized;
             position *= Random.Range(7, 8);
             Enemy clone = Instantiate(zombie, position, Quaternion.identity).GetComponent<Enemy>();
-            clone.dropWeights = dropWeights[_currRound];
+            clone.dropWeights = dropWeights[_currRound % dropWeights.Count];
             clone.SetMaxHp(15 + _currRound * (float)7.5);
         }
 
@@ -123,7 +123,7 @@ public class GameController : MonoBehaviour {
             Vector3 position = Random.insideUnitCircle.normalized;
             position *= Random.Range(7, 8);
             Enemy clone = Instantiate(archer, position, Quaternion.identity).GetComponent<Enemy>();
-            clone.dropWeights = dropWeights[_currRound];
+            clone.dropWeights = dropWeights[_currRound % dropWeights.Count];
             clone.SetMaxHp(10 + _currRound * 5);
         }
 
@@ -133,7 +133,7 @@ public class GameController : MonoBehaviour {
             Vector3 position = Random.insideUnitCircle.normalized;
             position *= Random.Range(7, 8);
             Enemy clone = Instantiate(tank, position, Quaternion.identity).GetComponent<Enemy>();
-            clone.dropWeights = dropWeights[_currRound];
+            clone.dropWeights = dropWeights[_currRound % dropWeights.Count];
             clone.SetMaxHp(30 + _currRound * 15);
         }
 
@@ -143,10 +143,13 @@ public class GameController : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+        if (rounds.Count != dropWeights.Count) {
+            throw new Exception("Lengths of round list and drop weight list are not equal!");
+        }
         List<GameObject> enemies = new List<GameObject>(GameObject.FindGameObjectsWithTag("Enemy"));
         if (enemies.Count == 0 && !roundOver) {
             roundOver = true;
-            _currRound = _currRound == rounds.Count - 1 ? rounds.Count - 1 : _currRound + 1;
+            _currRound++;
             SceneManager.LoadScene("MenuScene", LoadSceneMode.Additive);
         }
 	}

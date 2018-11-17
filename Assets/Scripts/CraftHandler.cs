@@ -22,6 +22,7 @@ public class CraftHandler : MonoBehaviour {
     public Button shapeSlot;
     public Button modifierSlot;
 
+    public Sprite nullImage;
     public Sprite fireImage;
     public Sprite iceImage;
     public Sprite rotImage;
@@ -53,18 +54,21 @@ public class CraftHandler : MonoBehaviour {
         {
             _selectedElements.Clear();
             elementSlot.GetComponent<Image>().color = Color.white;
+            UpdateSelected();
             UpdateCardCounts();
         });
         shapeSlot.onClick.AddListener(() =>
         {
             _selectedShape = null;
             shapeSlot.GetComponent<Image>().color = Color.white;
+            UpdateSelected();
             UpdateCardCounts();
         });
         modifierSlot.onClick.AddListener(() =>
         {
             _selectedModifier = null;
             modifierSlot.GetComponent<Image>().color = Color.white;
+            UpdateSelected();
             UpdateCardCounts();
         });
 
@@ -178,7 +182,8 @@ public class CraftHandler : MonoBehaviour {
         _selectedElements.Clear();
         _selectedModifier = null;
         _selectedShape = null;
-        UpdateColors();
+        UpdateCardCounts();
+        UpdateSelected();
     }
 
     private void CraftSelection() {
@@ -204,8 +209,8 @@ public class CraftHandler : MonoBehaviour {
             inventory.spells.Add(spell);
             RefreshInventorySpells();
             ClearSelection();
-            UpdateCardCounts();
         }
+        UpdateCardCounts();
     }
 
     private void RefreshInventorySpells() {
@@ -272,7 +277,7 @@ public class CraftHandler : MonoBehaviour {
                 // Make sure the element matches the existing element types.
                 if (_selectedElements.Count == 0 || _selectedElements[0] == elementType)
                 {
-                    elementSlot.GetComponent<Image>().color = Color.green;
+                    //elementSlot.GetComponent<Image>().color = Color.green;
                     _selectedElements.Add(elementType);
                 }
             }
@@ -312,14 +317,58 @@ public class CraftHandler : MonoBehaviour {
             RefreshInventorySpells();
         }
         UpdateCardCounts();
-        UpdateColors();
+        UpdateSelected();
     }
 
-    private void UpdateColors() {
-        elementSlot.GetComponent<Image>().color = _selectedElements.Count == 0 ? Color.white :
-            Color.green;
-        shapeSlot.GetComponent<Image>().color = _selectedShape == null ? Color.white : Color.green;
-        modifierSlot.GetComponent<Image>().color = _selectedModifier == null ? Color.white : Color.green;
+    private void UpdateSelected() {
+        Sprite cardImage;
+
+        if (_selectedElements.Count < 1) {
+            cardImage = nullImage;
+        } else {
+            switch (_selectedElements[0])
+            {
+                case ElementType.FIRE:
+                    cardImage = fireImage;
+                    break;
+                case ElementType.ICE:
+                    cardImage = iceImage;
+                    break;
+                case ElementType.ROT:
+                    cardImage = rotImage;
+                    break;
+                default:
+                    cardImage = nullImage;
+                    break;
+            }
+        }
+        elementSlot.GetComponent<Image>().sprite = cardImage;
+
+        if (_selectedShape == null) {
+            cardImage = nullImage;
+        } else {
+            switch ((_selectedShape.gameObject.GetComponent<CardUI>().card as ShapeCard).shape)
+            {
+                case ShapeType.CIRCLE:
+                    cardImage = circleImage;
+                    break;
+                case ShapeType.CONE:
+                    cardImage = coneImage;
+                    break;
+                case ShapeType.LINE:
+                    cardImage = lineImage;
+                    break;
+                case ShapeType.PROJECTILE:
+                    cardImage = projectileImage;
+                    break;
+                default:
+                    cardImage = nullImage;
+                    break;
+            }
+        }
+        shapeSlot.GetComponent<Image>().sprite = cardImage;
+
+        //modifierSlot.GetComponent<Image>().color = cardImage;
     }
 
     private void FinishCrafting() {

@@ -18,8 +18,7 @@ public class Collectible : MonoBehaviour {
     {
         if (other.gameObject.CompareTag(targetTag))
         {
-            Inventory inv = other.gameObject.GetComponent<Player>().inventory;
-            card.AddToInventory(inv);
+            card.Collect(other.gameObject.GetComponent<Player>());
             Destroy(gameObject);
         }
     }

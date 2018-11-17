@@ -17,28 +17,32 @@ public class Enemy : Entity {
 
     public override void Die()
     {
-        //Debug.Log("here");
-        //Object[] cards = Resources.LoadAll("Prefab/Collectibles");
-
         int randomNum = Random.Range(1, 101); // has value in range [1, 100]
-
-        if (1 <= randomNum && randomNum < 26) {
-            // spawn health drops
-        } else {
-            // Generate random card according to weights and level
-            Dictionary<Card, int> choices = new Dictionary<Card, int>
+        if (randomNum > 25) {
+            randomNum = Random.Range(1, 101); // has value in range [1, 100]
+            if (1 <= randomNum && randomNum < 25)
             {
-                {new ElementCard(ElementType.FIRE), dropWeights.fireWeight},
-                {new ElementCard(ElementType.ICE), dropWeights.iceWeight},
-                {new ElementCard(ElementType.ROT), dropWeights.rotWeight},
-                {new ShapeCard(ShapeType.CIRCLE), dropWeights.circleWeight},
-                {new ShapeCard(ShapeType.CONE), dropWeights.coneWeight},
-                {new ShapeCard(ShapeType.LINE), dropWeights.lineWeight},
-                {new ShapeCard(ShapeType.PROJECTILE), dropWeights.projectileWeight}
-            };
+                // spawn health drops
+                GameObject clone = Instantiate(collectible, transform.position, Quaternion.identity) as GameObject;
+                clone.GetComponent<Collectible>().card = new HealthCard(10f);
+            }
+            else
+            {
+                // Generate random card according to weights and level
+                Dictionary<Card, int> choices = new Dictionary<Card, int>
+                {
+                    {new ElementCard(ElementType.FIRE), dropWeights.fireWeight},
+                    {new ElementCard(ElementType.ICE), dropWeights.iceWeight},
+                    {new ElementCard(ElementType.ROT), dropWeights.rotWeight},
+                    {new ShapeCard(ShapeType.CIRCLE), dropWeights.circleWeight},
+                    {new ShapeCard(ShapeType.CONE), dropWeights.coneWeight},
+                    {new ShapeCard(ShapeType.LINE), dropWeights.lineWeight},
+                    {new ShapeCard(ShapeType.PROJECTILE), dropWeights.projectileWeight}
+                };
 
-            GameObject clone = Instantiate(collectible, transform.position, Quaternion.identity) as GameObject;
-            clone.GetComponent<Collectible>().card = RandomWeightedPicker(choices);
+                GameObject clone = Instantiate(collectible, transform.position, Quaternion.identity) as GameObject;
+                clone.GetComponent<Collectible>().card = RandomWeightedPicker(choices);
+            }
         }
 
         return;

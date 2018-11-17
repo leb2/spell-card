@@ -4,6 +4,6 @@ using UnityEngine;
 
 public abstract class Card {
     public CardType cardType;
-    public abstract void AddToInventory(Inventory inv);
+    public abstract void Collect(Player p);
     public Color color = Color.white;
 }

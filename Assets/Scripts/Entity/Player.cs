@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Player : Entity {
@@ -95,5 +96,12 @@ public class Player : Entity {
         base.TakeDamage(damage);
         HPBar.value -= damage;
         return false; 
+    }
+
+    public override void Die()
+    {
+        base.Die();
+        SceneManager.LoadScene("GameOverScene", LoadSceneMode.Single);
+        return;
     }
 }
