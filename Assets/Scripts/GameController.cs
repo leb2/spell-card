@@ -134,7 +134,7 @@ public class GameController : MonoBehaviour {
             position *= Random.Range(7, 8);
             Enemy clone = Instantiate(tank, position, Quaternion.identity).GetComponent<Enemy>();
             clone.dropWeights = dropWeights[_currRound % dropWeights.Count];
-            clone.SetMaxHp(30 + _currRound * 15);
+            clone.SetMaxHp(500 + _currRound * 15);
         }
 
         GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>().position = Vector3.zero;

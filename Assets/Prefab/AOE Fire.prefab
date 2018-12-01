@@ -22,10 +22,10 @@ GameObject:
   - component: {fileID: 212114282229681422}
   - component: {fileID: 50023419716851214}
   - component: {fileID: 58630717360976432}
-  - component: {fileID: 114661285085759280}
-  - component: {fileID: 95069238611351974}
+  - component: {fileID: 114117730968537046}
+  - component: {fileID: 95262599785087650}
   m_Layer: 0
-  m_Name: CircleSpellIndicator
+  m_Name: AOE Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -79,7 +79,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!95 &95069238611351974
+--- !u!95 &95262599785087650
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
@@ -88,7 +88,7 @@ Animator:
   m_GameObject: {fileID: 1543850379695100}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 15dbb56c07ba2de4aa238f1424a6bab3, type: 2}
+  m_Controller: {fileID: 9100000, guid: 68f7c9c0c652e4848b194a151ed4cfd6, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -97,7 +97,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114661285085759280
+--- !u!114 &114117730968537046
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -105,9 +105,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1543850379695100}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebef17bc9eea7439282475ebb728a754, type: 3}
+  m_Script: {fileID: 11500000, guid: 07f7ea6e9912a43cfbbc57d5aa45b325, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetTag: Enemy
 --- !u!212 &212114282229681422
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -144,7 +145,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 2120e6f3fa6d140b3a116e66ae26a254, type: 3}
-  m_Color: {r: 1, g: 0.97164285, b: 0, a: 0.6431373}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

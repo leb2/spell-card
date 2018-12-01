@@ -8,10 +8,20 @@ public class Player : Entity {
 
     public Inventory inventory;
 
+    //instantiates all spell types 
     public GameObject projectile;
-    public GameObject coneArea;
-    public GameObject lineArea;
-    public GameObject circleArea;
+    public GameObject projectile2;
+    public GameObject projectile3;
+    public GameObject cone;
+    public GameObject cone2;
+    public GameObject cone3;
+    public GameObject line;
+    public GameObject line2;
+    public GameObject line3;
+    public GameObject circle;
+    public GameObject circle2;
+    public GameObject circle3;
+
     public Slider HPBar;
     public int[] spellCooldowns = { 0, 0 };
 
@@ -47,6 +57,7 @@ public class Player : Entity {
         //update animator with position info
         animator.SetFloat("HorzSpeed", Input.GetAxisRaw("Horizontal") * speed);
         animator.SetFloat("VertSpeed", Input.GetAxisRaw("Vertical") * speed);
+        animator.SetFloat("health", hp);
 
         // Cast Spells
         if (Input.GetKeyDown(KeyCode.Mouse0) && spellCooldowns[0] < 1) {
@@ -71,9 +82,9 @@ public class Player : Entity {
 
         Dictionary<ShapeType, GameObject> shapeAreaPrefabs = new Dictionary<ShapeType, GameObject>
         {
-                {ShapeType.CONE, coneArea},
-                {ShapeType.CIRCLE, circleArea},
-                {ShapeType.LINE, lineArea},
+                {ShapeType.CONE, cone},
+                {ShapeType.CIRCLE, circle},
+                {ShapeType.LINE, line},
                 {ShapeType.PROJECTILE, projectile}
         };
         //Debug.Log(gameObject.GetComponent<Rigidbody2D>().position);
@@ -100,8 +111,8 @@ public class Player : Entity {
 
     public override void Die()
     {
-        base.Die();
-        SceneManager.LoadScene("GameOverScene", LoadSceneMode.Single);
-        return;
+            base.Die();
+            SceneManager.LoadScene("GameOverScene", LoadSceneMode.Single);
+            return;
     }
 }
