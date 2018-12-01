@@ -22,8 +22,8 @@ public class Spell {
         Dictionary<ElementType, float> damages = new Dictionary<ElementType, float>
         {
             {ElementType.FIRE, 10},
-            {ElementType.ICE, 5},
-            {ElementType.ROT, 5}
+            {ElementType.ICE, 10},
+            {ElementType.ROT, 8}
         };
 
 
@@ -39,6 +39,10 @@ public class Spell {
                 break;
             default:
                 throw new Exception("Spell of unknown element encountered: " + elementType);
+        }
+        if (this.elementType == ElementType.ICE)
+        {
+            Debug.Log("Spell damage: " + this.damage);
         }
 
         // Set cooldown of spell
@@ -74,6 +78,7 @@ public class Spell {
                 float baseSpeedMod = (float)(0.5); // slow down by 50%
                 baseDuration = 150; // ~5 seconds
                 entity.ModifySpeed(baseSpeedMod, baseDuration * magnitude);
+                entity.TakeDamage(damage);
                 break;
             case ElementType.ROT:
                 baseDuration = 90; // ~3 seconds
