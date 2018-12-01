@@ -127,117 +127,17 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 36
-        y: 18
+        y: 1
         width: 29
-        height: 97
+        height: 114
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fefe23e54c2b3d943a263f9b87d0d101
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: iceball_1
-      rect:
-        serializedVersion: 2
-        x: 39
-        y: 16
-        width: 5
-        height: 5
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f5e088252f5363f439b0f848288bea78
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: iceball_2
-      rect:
-        serializedVersion: 2
-        x: 41
-        y: 2
-        width: 11
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 94059272092fc544b881940b0b3d9f89
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: iceball_3
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 11
-        width: 5
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ff242686167eecb419c923fd933141a7
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: iceball_4
-      rect:
-        serializedVersion: 2
-        x: 55
-        y: 16
-        width: 6
-        height: 5
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 393445eea509840409f69c646c281c20
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: iceball_5
-      rect:
-        serializedVersion: 2
-        x: 55
-        y: 5
-        width: 5
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5082b74818b399141bd7b1a4fb93e060
+      spriteID: 790b25f5d97c7174d827cb95f05c2534
       vertices: []
       indices: 
       edges: []
@@ -247,97 +147,17 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 136
-        y: 18
-        width: 28
-        height: 96
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 28aea34efa6656442b0221a8b403476b
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: iceball_7
-      rect:
-        serializedVersion: 2
-        x: 144
         y: 0
-        width: 18
-        height: 7
+        width: 28
+        height: 114
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bf7292c8cdc987e499bc9e789673fc31
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: iceball_8
-      rect:
-        serializedVersion: 2
-        x: 144
-        y: 9
-        width: 6
-        height: 5
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6b3e0b6b3288e904d9b4fb67b1654a89
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: iceball_9
-      rect:
-        serializedVersion: 2
-        x: 147
-        y: 17
-        width: 4
-        height: 5
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2298eda039f0407459d40e6a1793b281
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: iceball_10
-      rect:
-        serializedVersion: 2
-        x: 152
-        y: 15
-        width: 10
-        height: 5
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 04a932dcde6c4e948abb2ba76d5bb367
+      spriteID: 02c8d6f08adea6343be404af2bc5786d
       vertices: []
       indices: 
       edges: []
@@ -351,53 +171,13 @@ TextureImporter:
         width: 30
         height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c02f647e5cc21f84d8044c31443ced06
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: iceball_12
-      rect:
-        serializedVersion: 2
-        x: 244
-        y: 3
-        width: 13
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: dde605ac146207d40bc56db9ddd594f4
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: iceball_13
-      rect:
-        serializedVersion: 2
-        x: 252
-        y: 14
-        width: 5
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f499ea56b68943e45bbe3b67a957a25a
+      spriteID: d880a24a6bbcc4546bb49ffb6293d488
       vertices: []
       indices: 
       edges: []
@@ -406,58 +186,18 @@ TextureImporter:
       name: iceball_14
       rect:
         serializedVersion: 2
-        x: 335
-        y: 2
+        x: 334
+        y: 3
         width: 33
         height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a401f642aa751824cbb7ae30a54eec45
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: iceball_15
-      rect:
-        serializedVersion: 2
-        x: 345
-        y: 13
-        width: 4
-        height: 5
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 834d7205671278943bb7327ed6cb1294
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: iceball_16
-      rect:
-        serializedVersion: 2
-        x: 354
-        y: 8
-        width: 5
-        height: 4
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 91007e4e99e16864eb9d257d6dfcda22
+      spriteID: 9da58d71b8ee05949b02382571898777
       vertices: []
       indices: 
       edges: []
