@@ -1105,6 +1105,78 @@ Prefab:
       propertyPath: animator
       value: 
       objectReference: {fileID: 1979931641}
+    - target: {fileID: 114940009821571266, guid: 805c54af5be679c459d8f482e7252799,
+        type: 2}
+      propertyPath: fireProjectile
+      value: 
+      objectReference: {fileID: 1078129184796930, guid: 1aad0875d264745a1851ecb97e832a1a,
+        type: 2}
+    - target: {fileID: 114940009821571266, guid: 805c54af5be679c459d8f482e7252799,
+        type: 2}
+      propertyPath: iceProjectile
+      value: 
+      objectReference: {fileID: 1078129184796930, guid: 4e8c6448e7b72134ba9816012bcc2dfd,
+        type: 2}
+    - target: {fileID: 114940009821571266, guid: 805c54af5be679c459d8f482e7252799,
+        type: 2}
+      propertyPath: rotProjectile
+      value: 
+      objectReference: {fileID: 1078129184796930, guid: 67fa3dc5695de9348a82df9c762d111f,
+        type: 2}
+    - target: {fileID: 114940009821571266, guid: 805c54af5be679c459d8f482e7252799,
+        type: 2}
+      propertyPath: fireCone
+      value: 
+      objectReference: {fileID: 1501815290534326, guid: 23d54465ff88649d7a5b2cd455c2681f,
+        type: 2}
+    - target: {fileID: 114940009821571266, guid: 805c54af5be679c459d8f482e7252799,
+        type: 2}
+      propertyPath: iceCone
+      value: 
+      objectReference: {fileID: 1501815290534326, guid: 317b9fa3bddd65b49a742a4c46d27db0,
+        type: 2}
+    - target: {fileID: 114940009821571266, guid: 805c54af5be679c459d8f482e7252799,
+        type: 2}
+      propertyPath: rotCone
+      value: 
+      objectReference: {fileID: 1501815290534326, guid: f195c337cdaac02419fe776b4aed9841,
+        type: 2}
+    - target: {fileID: 114940009821571266, guid: 805c54af5be679c459d8f482e7252799,
+        type: 2}
+      propertyPath: fireLine
+      value: 
+      objectReference: {fileID: 1346848879475456, guid: fca9a913d12b249c89b80e8f63e1eb29,
+        type: 2}
+    - target: {fileID: 114940009821571266, guid: 805c54af5be679c459d8f482e7252799,
+        type: 2}
+      propertyPath: iceLine
+      value: 
+      objectReference: {fileID: 1346848879475456, guid: 50005deb54cd6b448a9d53fbbaa13720,
+        type: 2}
+    - target: {fileID: 114940009821571266, guid: 805c54af5be679c459d8f482e7252799,
+        type: 2}
+      propertyPath: rotLine
+      value: 
+      objectReference: {fileID: 1346848879475456, guid: 4bffd7fd0a20d5945a1b307497d7f461,
+        type: 2}
+    - target: {fileID: 114940009821571266, guid: 805c54af5be679c459d8f482e7252799,
+        type: 2}
+      propertyPath: fireCircle
+      value: 
+      objectReference: {fileID: 1543850379695100, guid: fdbcc3781bb6743fc887eb8eb9622692,
+        type: 2}
+    - target: {fileID: 114940009821571266, guid: 805c54af5be679c459d8f482e7252799,
+        type: 2}
+      propertyPath: iceCircle
+      value: 
+      objectReference: {fileID: 1543850379695100, guid: a23a4fc263cb69447ab3444d0f85e9b9,
+        type: 2}
+    - target: {fileID: 114940009821571266, guid: 805c54af5be679c459d8f482e7252799,
+        type: 2}
+      propertyPath: rotCircle
+      value: 
+      objectReference: {fileID: 1543850379695100, guid: 0e8f94bfcb22ab74195bae756af2e2f1,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 805c54af5be679c459d8f482e7252799, type: 2}
   m_IsPrefabAsset: 0

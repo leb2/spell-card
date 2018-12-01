@@ -9,18 +9,18 @@ public class Player : Entity {
     public Inventory inventory;
 
     //instantiates all spell types 
-    public GameObject projectile;
-    public GameObject projectile2;
-    public GameObject projectile3;
-    public GameObject cone;
-    public GameObject cone2;
-    public GameObject cone3;
-    public GameObject line;
-    public GameObject line2;
-    public GameObject line3;
-    public GameObject circle;
-    public GameObject circle2;
-    public GameObject circle3;
+    public GameObject fireProjectile;
+    public GameObject iceProjectile;
+    public GameObject rotProjectile;
+    public GameObject fireCone;
+    public GameObject iceCone;
+    public GameObject rotCone;
+    public GameObject fireLine;
+    public GameObject iceLine;
+    public GameObject rotLine;
+    public GameObject fireCircle;
+    public GameObject iceCircle;
+    public GameObject rotCircle;
 
     public Slider HPBar;
     public int[] spellCooldowns = { 0, 0 };
@@ -80,16 +80,44 @@ public class Player : Entity {
     private void UseSpell(int spellIndex, Vector3 worldPoint) {
         Spell spell = inventory.equippedSpells[spellIndex];
 
-        Dictionary<ShapeType, GameObject> shapeAreaPrefabs = new Dictionary<ShapeType, GameObject>
+        Dictionary<ElementType, GameObject> conePrefabs = new Dictionary<ElementType, GameObject>
         {
-                {ShapeType.CONE, cone},
-                {ShapeType.CIRCLE, circle},
-                {ShapeType.LINE, line},
-                {ShapeType.PROJECTILE, projectile}
+                {ElementType.FIRE, fireCone},
+                {ElementType.ICE, iceCone},
+                {ElementType.ROT, rotCone},
+        };
+
+        Dictionary<ElementType, GameObject> circlePrefabs = new Dictionary<ElementType, GameObject>
+        {
+                {ElementType.FIRE, fireCircle},
+                {ElementType.ICE, iceCircle},
+                {ElementType.ROT, rotCircle},
+        };
+
+        Dictionary<ElementType, GameObject> linePrefabs = new Dictionary<ElementType, GameObject>
+        {
+                {ElementType.FIRE, fireLine},
+                {ElementType.ICE, iceLine},
+                {ElementType.ROT, rotLine},
+        };
+
+        Dictionary<ElementType, GameObject> projectilePrefabs = new Dictionary<ElementType, GameObject>
+        {
+                {ElementType.FIRE, fireProjectile},
+                {ElementType.ICE, iceProjectile},
+                {ElementType.ROT, rotProjectile},
+        };
+
+        Dictionary<ShapeType, Dictionary<ElementType, GameObject>> shapeAreaPrefabs = new Dictionary<ShapeType, Dictionary<ElementType, GameObject>>
+        {
+                {ShapeType.CONE, conePrefabs},
+                {ShapeType.CIRCLE, circlePrefabs},
+                {ShapeType.LINE, linePrefabs},
+                {ShapeType.PROJECTILE, projectilePrefabs}
         };
         //Debug.Log(gameObject.GetComponent<Rigidbody2D>().position);
         //Debug.Log(transform.position);
-        GameObject spellObj = Instantiate(shapeAreaPrefabs[spell.shape], transform.position, Quaternion.identity);
+        GameObject spellObj = Instantiate(shapeAreaPrefabs[spell.shape][spell.elementType], transform.position, Quaternion.identity);
         spellObj.GetComponents<SpellEffect>()[0].Cast(spell, worldPoint);
     }
 
